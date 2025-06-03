@@ -5,46 +5,46 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageVersion Include="CommunityToolkit.Mvvm" Version="8.3.2" />
+    <PackageVersion Include="CommunityToolkit.Mvvm" Version="8.4.0" />
     <PackageVersion Include="CommunityToolkit.WinUI.UI.Controls.Input" Version="7.1.2" />
     <PackageVersion Include="CommunityToolkit.WinUI.UI.Controls.Layout" Version="7.1.2" />
     <PackageVersion Include="Formatters.PList" Version="1.2.0" />
-    <PackageVersion Include="Microsoft.Bcl.AsyncInterfaces" Version="8.0.0" />
-    <PackageVersion Include="Microsoft.Extensions.Configuration.UserSecrets" Version="8.0.0" />
-    <PackageVersion Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
-    <PackageVersion Include="Microsoft.WindowsAppSDK" Version="1.6.240923002" />
-    <PackageVersion Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.1742" />
-    <PackageVersion Include="Microsoft.Xaml.Behaviors.WinUI.Managed" Version="2.0.9" />
+    <PackageVersion Include="Microsoft.Bcl.AsyncInterfaces" Version="9.0.5" />
+    <PackageVersion Include="Microsoft.Extensions.Configuration.UserSecrets" Version="9.0.5" />
+    <PackageVersion Include="Microsoft.Extensions.Hosting" Version="9.0.5" />
+    <PackageVersion Include="Microsoft.WindowsAppSDK" Version="1.6.250430001" />
+    <PackageVersion Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.4188" />
+    <PackageVersion Include="Microsoft.Xaml.Behaviors.WinUI.Managed" Version="3.0.0" />
     <PackageVersion Include="NeoSmart.AsyncLock" Version="3.2.1" />
     <PackageVersion Include="RestSharp" Version="112.1.0" />
-    <PackageVersion Include="SixLabors.ImageSharp" Version="2.1.9" />
-    <PackageVersion Include="System.CommandLine.Hosting" Version="0.4.0-alpha.24324.3" />
+    <PackageVersion Include="SixLabors.ImageSharp" Version="2.1.10" />
+    <PackageVersion Include="System.CommandLine.Hosting" Version="0.4.0-alpha.24302.103" />
     <PackageVersion Include="System.Linq.Async" Version="6.0.1" />
-    <PackageVersion Include="System.Text.Encoding.CodePages" Version="8.0.0" />
+    <PackageVersion Include="System.Text.Encoding.CodePages" Version="9.0.5" />
     <PackageVersion Include="TagLibSharp" Version="2.3.0" />
     <PackageVersion Include="TMDbLib" Version="2.2.0" />
-    <PackageVersion Include="Vanara.PInvoke.Shell32" Version="4.0.4" />
-    <PackageVersion Include="Vanara.PInvoke.User32" Version="4.0.4" />
+    <PackageVersion Include="Vanara.PInvoke.Shell32" Version="4.1.3" />
+    <PackageVersion Include="Vanara.PInvoke.User32" Version="4.1.3" />
   </ItemGroup>
 
   <ItemGroup Label="Kiota">
-    <PackageVersion Include="Microsoft.Kiota.Abstractions" Version="1.13.0" />
-    <PackageVersion Include="Microsoft.Kiota.Authentication.Azure" Version="1.13.0" />
-    <PackageVersion Include="Microsoft.Kiota.Http.HttpClientLibrary" Version="1.13.0" />
-    <PackageVersion Include="Microsoft.Kiota.Serialization.Form" Version="1.13.0" />
-    <PackageVersion Include="Microsoft.Kiota.Serialization.Json" Version="1.13.0" />
-    <PackageVersion Include="Microsoft.Kiota.Serialization.Multipart" Version="1.13.0" />
-    <PackageVersion Include="Microsoft.Kiota.Serialization.Text" Version="1.13.0" />
+    <PackageVersion Include="Microsoft.Kiota.Abstractions" Version="1.17.4" />
+    <PackageVersion Include="Microsoft.Kiota.Authentication.Azure" Version="1.17.4" />
+    <PackageVersion Include="Microsoft.Kiota.Http.HttpClientLibrary" Version="1.17.4" />
+    <PackageVersion Include="Microsoft.Kiota.Serialization.Form" Version="1.17.4" />
+    <PackageVersion Include="Microsoft.Kiota.Serialization.Json" Version="1.17.4" />
+    <PackageVersion Include="Microsoft.Kiota.Serialization.Multipart" Version="1.17.4" />
+    <PackageVersion Include="Microsoft.Kiota.Serialization.Text" Version="1.17.4" />
   </ItemGroup>
 
   <ItemGroup Label="Source Generators">
-    <GlobalPackageReference Include="PolySharp" Version="1.14.1" />
+    <GlobalPackageReference Include="PolySharp" Version="1.15.0" />
   </ItemGroup>
 
   <ItemGroup Label="Analyzers">
-    <GlobalPackageReference Include="Meziantou.Analyzer" Version="2.0.169" />
-    <GlobalPackageReference Include="Roslynator.Analyzers" Version="4.12.7" />
-    <GlobalPackageReference Include="SonarAnalyzer.CSharp" Version="9.32.0.97167" />
+    <GlobalPackageReference Include="Meziantou.Analyzer" Version="2.0.201" />
+    <GlobalPackageReference Include="Roslynator.Analyzers" Version="4.13.1" />
+    <GlobalPackageReference Include="SonarAnalyzer.CSharp" Version="10.10.0.116381" />
     <GlobalPackageReference Include="StyleCop.Analyzers.Unstable" Version="1.2.0.556" />
   </ItemGroup>
 
