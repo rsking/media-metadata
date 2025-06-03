@@ -31,6 +31,11 @@ public class TMDbMovieSearch : IMovieSearch
                 _ = await client.GetConfigAsync().ConfigureAwait(false);
             }
 
+            if (movie is null)
+            {
+                continue;
+            }
+
             var poster = movie.Images?.Posters?.FirstOrDefault();
             Rating? countryRating = default;
             Rating? invariantRating = default;
