@@ -116,7 +116,7 @@ public class Mp4Reader : IReader
 
         if (trackList is { Count: > 0 } tl)
         {
-            video = video with { Tracks = tl.Select(track => new MediaTrack(track.Id, GetMediaTrackType(track.Type), track.Language)).ToList() };
+            video = video with { Tracks = [.. tl.Select(track => new MediaTrack(track.Id, GetMediaTrackType(track.Type), track.Language))] };
         }
 
         return video;

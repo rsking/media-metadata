@@ -90,5 +90,5 @@ public static class PListExtensions
         return System.Text.Encoding.UTF8.GetString(memoryStream.ToArray());
     }
 
-    private static object[] ToPListArray(this IEnumerable<string> values, string key) => values.Select<string, object>(value => new Dictionary<string, object>(StringComparer.Ordinal) { { key, value } }).ToArray();
+    private static object[] ToPListArray(this IEnumerable<string> values, string key) => [.. values.Select<string, object>(value => new Dictionary<string, object>(StringComparer.Ordinal) { { key, value } })];
 }

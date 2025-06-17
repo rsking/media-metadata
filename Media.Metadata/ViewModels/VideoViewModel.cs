@@ -73,7 +73,7 @@ internal partial class VideoViewModel : CommunityToolkit.Mvvm.ComponentModel.Obs
         this.Release = video is { Release: { Ticks: not 0 } videoRelease } ? new DateTimeOffset(videoRelease) : default(DateTimeOffset?);
         this.Rating = new RatingViewModel(video.Rating);
         this.work = video.Work;
-        this.Tracks = video.Tracks.Select(track => new MediaTrackViewModel(track)).ToArray();
+        this.Tracks = [.. video.Tracks.Select(track => new MediaTrackViewModel(track))];
         this.Image = image;
         this.ImageFormat = imageFormat;
         this.ImageSource = imageSource;
@@ -185,7 +185,7 @@ internal partial class VideoViewModel : CommunityToolkit.Mvvm.ComponentModel.Obs
             Rating = this.Rating.SelectedRating,
             Release = this.Release?.DateTime,
             Work = this.Work,
-            Tracks = this.Tracks.Select(track => track.ToMediaTrack()).ToList(),
+            Tracks = [.. this.Tracks.Select(track => track.ToMediaTrack())],
             Image = this.Image,
             ImageFormat = this.ImageFormat,
         };

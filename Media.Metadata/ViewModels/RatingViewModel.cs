@@ -11,7 +11,7 @@ namespace Media.Metadata.ViewModels;
 /// </summary>
 internal sealed partial class RatingViewModel : CommunityToolkit.Mvvm.ComponentModel.ObservableObject
 {
-    private readonly System.Collections.ObjectModel.ObservableCollection<Rating> ratings = [];
+    private readonly System.Collections.ObjectModel.ObservableCollection<Rating> ratings = [..GetInitialRatings(rating)];
 
     [CommunityToolkit.Mvvm.ComponentModel.ObservableProperty]
     private Country? selectedCountry;

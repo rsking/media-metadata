@@ -66,7 +66,7 @@ await configuration
             _ = services
                 .Configure<InvocationLifetimeOptions>(options => options.SuppressStatusMessages = true);
         }))
-    .InvokeAsync(args.Select(Environment.ExpandEnvironmentVariables).ToArray())
+    .InvokeAsync([.. args.Select(Environment.ExpandEnvironmentVariables)])
     .ConfigureAwait(true);
 
 static CliCommand CreateSearchMovie()
@@ -608,7 +608,7 @@ static Dictionary<MediaTrackType, string>? GetLanguages(string[]? lang)
 
 static FileInfo[] ParseFileInfo(ArgumentResult argumentResult)
 {
-    return Process(argumentResult.Tokens.Select(token => token.Value)).SelectMany(results => results.Select(file => new FileInfo(file))).ToArray();
+    return [.. Process(argumentResult.Tokens.Select(token => token.Value)).SelectMany(results => results.Select(file => new FileInfo(file)))];
 
     static IEnumerable<IEnumerable<string>> Process(IEnumerable<string> tokens)
     {

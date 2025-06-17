@@ -57,7 +57,7 @@ internal sealed partial class EpisodeViewModel : VideoViewModel
             Number = this.Number,
             Id = this.Id,
             Part = this.Part,
-            Tracks = this.Tracks.Select(track => track.ToMediaTrack()).ToList(),
+            Tracks = [.. this.Tracks.Select(track => track.ToMediaTrack())],
             Image = this.Image,
             ImageFormat = this.ImageFormat,
         });

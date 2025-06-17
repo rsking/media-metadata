@@ -42,7 +42,7 @@ internal sealed partial class MediaTrackViewModel(MediaTrack mediaTrack) : Commu
 
     private static IEnumerable<string> GetLanguages()
     {
-        return languages ??= ReadLanguages().ToList();
+        return languages ??= [.. ReadLanguages()];
 
         static IEnumerable<string> ReadLanguages()
         {

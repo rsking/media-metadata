@@ -124,17 +124,17 @@ public sealed class TheTVDbShowSearch(Microsoft.Extensions.Options.IOptions<TheT
 
                             static IEnumerable<string>? GetWriters(IEnumerable<ApiSdk.Models.Character>? characters, long? episodeId)
                             {
-                                return GetCharacters(characters, episodeId, "Writer").ToList();
+                                return GetCharacters(characters, episodeId, "Writer")?.ToList();
                             }
 
                             static IEnumerable<string>? GetDirectors(IEnumerable<ApiSdk.Models.Character>? characters, long? episodeId)
                             {
-                                return GetCharacters(characters, episodeId, "Director").ToList();
+                                return GetCharacters(characters, episodeId, "Director")?.ToList();
                             }
 
                             static IEnumerable<string>? GetProducers(IEnumerable<ApiSdk.Models.Character>? characters, long? episodeId)
                             {
-                                return GetCharacters(characters, episodeId, "Producer", "Executive Producer").ToList();
+                                return GetCharacters(characters, episodeId, "Producer", "Executive Producer")?.ToList();
                             }
 
                             static IEnumerable<string>? GetCast(IEnumerable<ApiSdk.Models.Character>? characters, long? episodeId)

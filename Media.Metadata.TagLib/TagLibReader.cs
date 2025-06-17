@@ -46,13 +46,13 @@ public class TagLibReader : IReader
         fileInfo,
         GetTitle(appleTag),
         appleTag.Description,
-        GetPersonnel(list, "producers").ToArray(),
-        GetPersonnel(list, "directors").ToArray(),
-        list.ContainsKey("studio") ? list["studio"].ToString().Split(',').Select(studio => studio.Trim()).ToArray() : Enumerable.Empty<string>(),
+        [.. GetPersonnel(list, "producers")],
+        [.. GetPersonnel(list, "directors")],
+        list.ContainsKey("studio") ? [.. list["studio"].ToString().Split(',').Select(studio => studio.Trim())] : Enumerable.Empty<string>(),
         appleTag.Genres,
-        GetPersonnel(list, "screenwriters").ToArray(),
-        GetPersonnel(list, "cast").ToArray(),
-        SplitArray(appleTag.Composers).ToArray())
+        [.. GetPersonnel(list, "screenwriters")],
+        [.. GetPersonnel(list, "cast")],
+        [.. SplitArray(appleTag.Composers)])
     {
         Work = appleTag.GetWork(),
         Edition = appleTag.GetCategory(),
@@ -62,13 +62,13 @@ public class TagLibReader : IReader
         fileInfo,
         GetTitle(appleTag),
         appleTag.Description,
-        GetPersonnel(list, "producers").ToArray(),
-        GetPersonnel(list, "directors").ToArray(),
-        list.ContainsKey("studio") ? list["studio"].ToString().Split(',').Select(studio => studio.Trim()).ToArray() : Enumerable.Empty<string>(),
+        [.. GetPersonnel(list, "producers")],
+        [.. GetPersonnel(list, "directors")],
+        list.ContainsKey("studio") ? [.. list["studio"].ToString().Split(',').Select(studio => studio.Trim())] : Enumerable.Empty<string>(),
         appleTag.Genres,
-        GetPersonnel(list, "screenwriters").ToArray(),
-        GetPersonnel(list, "cast").ToArray(),
-        SplitArray(appleTag.Composers).ToArray())
+        [.. GetPersonnel(list, "screenwriters")],
+        [.. GetPersonnel(list, "cast")],
+        [.. SplitArray(appleTag.Composers)])
     {
         Work = appleTag.GetWork(),
         Show = appleTag.GetShowName(),
