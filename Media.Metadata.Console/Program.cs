@@ -13,25 +13,25 @@ using Microsoft.Extensions.Hosting;
 
 System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
 
-var searchCommand = new CliCommand("search")
+var searchCommand = new Command("search")
 {
     CreateSearchMovie(),
     CreateSearchShow(),
 };
 
-var readCommand = new CliCommand("read")
+var readCommand = new Command("read")
 {
     CreateReadMovie(),
     CreateReadEpisode(),
 };
 
-var langOption = new CliOption<string[]>("--lang", "-l")
+var langOption = new Option<string[]>("--lang", "-l")
 {
     Description = "`[tkID=]LAN` Set the language. LAN is the ISO 639 code (eng, swe, ...). If no track ID is given, sets language to all tracks",
     Arity = ArgumentArity.OneOrMore,
 };
 
-var updateCommand = new CliCommand("update")
+var updateCommand = new Command("update")
 {
     CreateUpdateMovie(langOption),
     CreateUpdateEpisode(langOption),
@@ -42,7 +42,7 @@ var optimiseCommand = CreateOptimize();
 
 var renameCommand = CreateRename();
 
-var configuration = new CliConfiguration(new CliRootCommand
+var configuration = new CommandLineConfiguration(new RootCommand
 {
     searchCommand,
     readCommand,
@@ -69,11 +69,11 @@ await configuration
     .InvokeAsync([.. args.Select(Environment.ExpandEnvironmentVariables)])
     .ConfigureAwait(true);
 
-static CliCommand CreateSearchMovie()
+static Command CreateSearchMovie()
 {
-    var nameArgument = new CliArgument<string>("name");
-    var yearOption = new CliOption<int?>("--year", "-y") { Description = "The movie year" };
-    var command = new CliCommand("movie")
+    var nameArgument = new Argument<string>("name");
+    var yearOption = new Option<int?>("--year", "-y") { Description = "The movie year" };
+    var command = new Command("movie")
     {
         nameArgument,
         yearOption,
@@ -103,10 +103,10 @@ static CliCommand CreateSearchMovie()
     return command;
 }
 
-static CliCommand CreateReadMovie()
+static Command CreateReadMovie()
 {
-    var pathArgument = new CliArgument<FileInfo>("path").AcceptExistingOnly();
-    var command = new CliCommand("movie")
+    var pathArgument = new Argument<FileInfo>("path").AcceptExistingOnly();
+    var command = new Command("movie")
     {
         pathArgument,
     };
@@ -122,10 +122,10 @@ static CliCommand CreateReadMovie()
     return command;
 }
 
-static CliCommand CreateReadEpisode()
+static Command CreateReadEpisode()
 {
-    var pathArgument = new CliArgument<FileInfo>("path").AcceptExistingOnly();
-    var command = new CliCommand("episode")
+    var pathArgument = new Argument<FileInfo>("path").AcceptExistingOnly();
+    var command = new Command("episode")
     {
         pathArgument,
     };
@@ -141,11 +141,11 @@ static CliCommand CreateReadEpisode()
     return command;
 }
 
-static CliCommand CreateSearchShow()
+static Command CreateSearchShow()
 {
-    var nameArgument = new CliArgument<string>("name");
-    var yearOption = new CliOption<int>("--year", "-y") { Description = "The show year" };
-    var command = new CliCommand("show")
+    var nameArgument = new Argument<string>("name");
+    var yearOption = new Option<int>("--year", "-y") { Description = "The show year" };
+    var command = new Command("show")
     {
         nameArgument,
         yearOption,
@@ -179,12 +179,12 @@ static CliCommand CreateSearchShow()
     return command;
 }
 
-static CliCommand CreateUpdateMovie(CliOption<string[]> langOption)
+static Command CreateUpdateMovie(Option<string[]> langOption)
 {
-    var pathArgument = new CliArgument<FileInfo>("path").AcceptExistingOnly();
-    var nameArgument = new CliArgument<string>("name");
-    var yearOption = new CliOption<int>("--year", "-y") { Description = "The movie year" };
-    var command = new CliCommand("movie")
+    var pathArgument = new Argument<FileInfo>("path").AcceptExistingOnly();
+    var nameArgument = new Argument<string>("name");
+    var yearOption = new Option<int>("--year", "-y") { Description = "The movie year" };
+    var command = new Command("movie")
     {
         pathArgument,
         nameArgument,
@@ -220,17 +220,17 @@ static CliCommand CreateUpdateMovie(CliOption<string[]> langOption)
     return command;
 }
 
-static CliCommand CreateUpdateEpisode(CliOption<string[]> langOption)
+static Command CreateUpdateEpisode(Option<string[]> langOption)
 {
-    var pathArgument = new CliArgument<FileInfo[]>("path") { CustomParser = ParseFileInfo };
-    var nameOption = new CliOption<string>("--name", "-n") { Description = "The series name", Required = true };
-    var yearOption = new CliOption<int>("--year", "-y") { Description = "The series year", DefaultValueFactory = _ => -1 };
-    var seasonOption = new CliOption<int>("--season", "-s") { Description = "The season number", DefaultValueFactory = _ => -1 };
-    var episodeOption = new CliOption<int>("--episode", "-e") { Description = "The episode number", DefaultValueFactory = _ => -1 };
-    var ignoreOption = new CliOption<bool>("--ignore", "-i") { Description = "Ignore files that already have a valid episode" };
-    var episodeOffsetOption = new CliOption<int>("--offset", "-o") { Description = "Offset for episode numbers" };
+    var pathArgument = new Argument<FileInfo[]>("path") { CustomParser = ParseFileInfo };
+    var nameOption = new Option<string>("--name", "-n") { Description = "The series name", Required = true };
+    var yearOption = new Option<int>("--year", "-y") { Description = "The series year", DefaultValueFactory = _ => -1 };
+    var seasonOption = new Option<int>("--season", "-s") { Description = "The season number", DefaultValueFactory = _ => -1 };
+    var episodeOption = new Option<int>("--episode", "-e") { Description = "The episode number", DefaultValueFactory = _ => -1 };
+    var ignoreOption = new Option<bool>("--ignore", "-i") { Description = "Ignore files that already have a valid episode" };
+    var episodeOffsetOption = new Option<int>("--offset", "-o") { Description = "Offset for episode numbers" };
 
-    var command = new CliCommand("episode")
+    var command = new Command("episode")
     {
         pathArgument,
         nameOption,
@@ -257,7 +257,7 @@ static CliCommand CreateUpdateEpisode(CliOption<string[]> langOption)
             parseResult.GetValue(langOption),
             cancellationToken);
 
-        static async Task Process(CliConfiguration console, IHost host, FileInfo[] paths, string name, int year, int season, int episode, bool ignore, int offset, string[]? lang, CancellationToken cancellationToken)
+        static async Task Process(CommandLineConfiguration console, IHost host, FileInfo[] paths, string name, int year, int season, int episode, bool ignore, int offset, string[]? lang, CancellationToken cancellationToken)
         {
             var regex = GetEpisodeRegexes();
 
@@ -387,10 +387,10 @@ static CliCommand CreateUpdateEpisode(CliOption<string[]> langOption)
     return command;
 }
 
-static CliCommand CreateUpdateVideo(CliOption<string[]> langOption)
+static Command CreateUpdateVideo(Option<string[]> langOption)
 {
-    var pathArgument = new CliArgument<FileInfo[]>("path") { CustomParser = ParseFileInfo }.AcceptExistingOnly();
-    var command = new CliCommand("video")
+    var pathArgument = new Argument<FileInfo[]>("path") { CustomParser = ParseFileInfo }.AcceptExistingOnly();
+    var command = new Command("video")
     {
         pathArgument,
         langOption,
@@ -416,10 +416,10 @@ static CliCommand CreateUpdateVideo(CliOption<string[]> langOption)
     return command;
 }
 
-static CliCommand CreateOptimize()
+static Command CreateOptimize()
 {
-    var pathArgument = new CliArgument<FileInfo>("path").AcceptExistingOnly();
-    var command = new CliCommand("optimize") { pathArgument };
+    var pathArgument = new Argument<FileInfo>("path").AcceptExistingOnly();
+    var command = new Command("optimize") { pathArgument };
 
     command.SetAction(
         (parseResult, cancellationToken) => Task.Run(
@@ -433,17 +433,17 @@ static CliCommand CreateOptimize()
     return command;
 }
 
-static CliCommand CreateRename()
+static Command CreateRename()
 {
-    var sourceArgument = new CliArgument<DirectoryInfo>("source");
-    var moviesOption = new CliOption<DirectoryInfo>("--movies") { Description = "The destination folder for movies. If unset, defaults to \"--tv\"" }.AcceptExistingOnly();
-    var tvOption = new CliOption<DirectoryInfo>("--tv") { Description = "The destination folder for TV shows. If unset, defaults to \"--movies\"" }.AcceptExistingOnly();
-    var moveOption = new CliOption<bool>("-m", "--move") { Description = "Moves the files" };
-    var recursiveOption = new CliOption<bool>("-r", "--recursive") { Description = "Recursively searches <SOURCE>" };
-    var dryRunOption = new CliOption<bool>("-n", "--dry-run") { Description = "Don't actually move/copy any file(s). Instead, just show if they exist and would otherwise be moved/copied by the command." };
-    var inPlaceOption = new CliOption<bool>("-i", "--in-place") { Description = "Renames the files in place, rather than to <DESTINATION>." };
+    var sourceArgument = new Argument<DirectoryInfo>("source");
+    var moviesOption = new Option<DirectoryInfo>("--movies") { Description = "The destination folder for movies. If unset, defaults to \"--tv\"" }.AcceptExistingOnly();
+    var tvOption = new Option<DirectoryInfo>("--tv") { Description = "The destination folder for TV shows. If unset, defaults to \"--movies\"" }.AcceptExistingOnly();
+    var moveOption = new Option<bool>("-m", "--move") { Description = "Moves the files" };
+    var recursiveOption = new Option<bool>("-r", "--recursive") { Description = "Recursively searches <SOURCE>" };
+    var dryRunOption = new Option<bool>("-n", "--dry-run") { Description = "Don't actually move/copy any file(s). Instead, just show if they exist and would otherwise be moved/copied by the command." };
+    var inPlaceOption = new Option<bool>("-i", "--in-place") { Description = "Renames the files in place, rather than to <DESTINATION>." };
 
-    var command = new CliCommand("rename")
+    var command = new Command("rename")
     {
         sourceArgument,
         moviesOption,
