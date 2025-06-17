@@ -17,7 +17,7 @@ namespace ApiSdk.Movies
     /// <summary>
     /// Builds and executes requests for operations under \movies
     /// </summary>
-    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.19.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     internal partial class MoviesRequestBuilder : BaseRequestBuilder
     {
         /// <summary>The filter property</summary>
@@ -112,7 +112,7 @@ namespace ApiSdk.Movies
         /// <summary>
         /// returns list of movie base records
         /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.19.0")]
+        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         internal partial class MoviesRequestBuilderGetQueryParameters 
         {
             /// <summary>page number</summary>

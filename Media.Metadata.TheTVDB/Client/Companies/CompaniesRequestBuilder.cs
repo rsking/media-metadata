@@ -15,7 +15,7 @@ namespace ApiSdk.Companies
     /// <summary>
     /// Builds and executes requests for operations under \companies
     /// </summary>
-    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.19.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     internal partial class CompaniesRequestBuilder : BaseRequestBuilder
     {
         /// <summary>The types property</summary>
@@ -100,7 +100,7 @@ namespace ApiSdk.Companies
         /// <summary>
         /// returns a paginated list of company records
         /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.19.0")]
+        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         internal partial class CompaniesRequestBuilderGetQueryParameters 
         {
             /// <summary>name</summary>

@@ -12,7 +12,7 @@ namespace ApiSdk.Movies.Slug
     /// <summary>
     /// Builds and executes requests for operations under \movies\slug
     /// </summary>
-    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.19.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     internal partial class SlugRequestBuilder : BaseRequestBuilder
     {
         /// <summary>Gets an item from the ApiSdk.movies.slug.item collection</summary>

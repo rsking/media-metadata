@@ -13,7 +13,7 @@ namespace ApiSdk.Updates
     /// <summary>
     /// Builds and executes requests for operations under \updates
     /// </summary>
-    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.19.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     internal partial class UpdatesRequestBuilder : BaseRequestBuilder
     {
         /// <summary>
@@ -81,7 +81,7 @@ namespace ApiSdk.Updates
         /// <summary>
         /// Returns updated entities.  methodInt indicates a created record (1), an updated record (2), or a deleted record (3).  If a record is deleted because it was a duplicate of another record, the target record&apos;s information is provided in mergeToType and mergeToId.
         /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.19.0")]
+        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         internal partial class UpdatesRequestBuilderGetQueryParameters 
         {
             [QueryParameter("action")]

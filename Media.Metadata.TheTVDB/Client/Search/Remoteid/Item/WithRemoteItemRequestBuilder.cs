@@ -13,7 +13,7 @@ namespace ApiSdk.Search.Remoteid.Item
     /// <summary>
     /// Builds and executes requests for operations under \search\remoteid\{remoteId}
     /// </summary>
-    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.19.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     internal partial class WithRemoteItemRequestBuilder : BaseRequestBuilder
     {
         /// <summary>

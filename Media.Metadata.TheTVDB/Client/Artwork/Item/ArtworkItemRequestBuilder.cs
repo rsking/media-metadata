@@ -14,7 +14,7 @@ namespace ApiSdk.Artwork.Item
     /// <summary>
     /// Builds and executes requests for operations under \artwork\{id}
     /// </summary>
-    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.19.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     internal partial class ArtworkItemRequestBuilder : BaseRequestBuilder
     {
         /// <summary>The extended property</summary>

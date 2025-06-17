@@ -10,7 +10,7 @@ namespace ApiSdk.Models
     /// <summary>
     /// base episode record
     /// </summary>
-    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.19.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     internal partial class EpisodeBaseRecord : IAdditionalDataHolder, IParsable
     {
         /// <summary>The absoluteNumber property</summary>

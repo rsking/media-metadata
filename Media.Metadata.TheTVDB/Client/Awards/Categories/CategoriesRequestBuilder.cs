@@ -12,7 +12,7 @@ namespace ApiSdk.Awards.Categories
     /// <summary>
     /// Builds and executes requests for operations under \awards\categories
     /// </summary>
-    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.19.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     internal partial class CategoriesRequestBuilder : BaseRequestBuilder
     {
         /// <summary>Gets an item from the ApiSdk.awards.categories.item collection</summary>

@@ -13,7 +13,7 @@ namespace ApiSdk.Episodes.Item.Translations.Item
     /// <summary>
     /// Builds and executes requests for operations under \episodes\{id}\translations\{language}
     /// </summary>
-    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.19.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     internal partial class WithLanguageItemRequestBuilder : BaseRequestBuilder
     {
         /// <summary>

@@ -15,7 +15,7 @@ namespace ApiSdk.People
     /// <summary>
     /// Builds and executes requests for operations under \people
     /// </summary>
-    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.19.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     internal partial class PeopleRequestBuilder : BaseRequestBuilder
     {
         /// <summary>The types property</summary>
@@ -100,7 +100,7 @@ namespace ApiSdk.People
         /// <summary>
         /// Returns a list of people base records with the basic attributes.
         /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.19.0")]
+        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         internal partial class PeopleRequestBuilderGetQueryParameters 
         {
             /// <summary>page number</summary>

@@ -14,7 +14,7 @@ namespace ApiSdk.Episodes
     /// <summary>
     /// Builds and executes requests for operations under \episodes
     /// </summary>
-    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.19.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     internal partial class EpisodesRequestBuilder : BaseRequestBuilder
     {
         /// <summary>Gets an item from the ApiSdk.episodes.item collection</summary>
@@ -94,7 +94,7 @@ namespace ApiSdk.Episodes
         /// <summary>
         /// Returns a list of episodes base records with the basic attributes.&lt;br&gt; Note that all episodes are returned, even those that may not be included in a series&apos; default season order.
         /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.19.0")]
+        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         internal partial class EpisodesRequestBuilderGetQueryParameters 
         {
             /// <summary>page number</summary>

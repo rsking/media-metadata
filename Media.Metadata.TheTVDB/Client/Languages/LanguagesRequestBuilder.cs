@@ -13,7 +13,7 @@ namespace ApiSdk.Languages
     /// <summary>
     /// Builds and executes requests for operations under \languages
     /// </summary>
-    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.19.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     internal partial class LanguagesRequestBuilder : BaseRequestBuilder
     {
         /// <summary>

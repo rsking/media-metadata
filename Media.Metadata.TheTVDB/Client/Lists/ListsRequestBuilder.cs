@@ -15,7 +15,7 @@ namespace ApiSdk.Lists
     /// <summary>
     /// Builds and executes requests for operations under \lists
     /// </summary>
-    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.19.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     internal partial class ListsRequestBuilder : BaseRequestBuilder
     {
         /// <summary>The slug property</summary>
@@ -100,7 +100,7 @@ namespace ApiSdk.Lists
         /// <summary>
         /// returns list of list base records
         /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.19.0")]
+        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         internal partial class ListsRequestBuilderGetQueryParameters 
         {
             /// <summary>page number</summary>

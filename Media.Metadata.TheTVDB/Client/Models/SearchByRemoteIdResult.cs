@@ -10,7 +10,7 @@ namespace ApiSdk.Models
     /// <summary>
     /// search by remote reuslt is a base record for a movie, series, people, season or company search result
     /// </summary>
-    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.19.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     internal partial class SearchByRemoteIdResult : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>

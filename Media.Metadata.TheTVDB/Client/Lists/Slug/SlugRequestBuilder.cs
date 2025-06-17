@@ -12,7 +12,7 @@ namespace ApiSdk.Lists.Slug
     /// <summary>
     /// Builds and executes requests for operations under \lists\slug
     /// </summary>
-    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.19.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     internal partial class SlugRequestBuilder : BaseRequestBuilder
     {
         /// <summary>Gets an item from the ApiSdk.lists.slug.item collection</summary>

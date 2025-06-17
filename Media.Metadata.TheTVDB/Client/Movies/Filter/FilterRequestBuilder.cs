@@ -13,7 +13,7 @@ namespace ApiSdk.Movies.Filter
     /// <summary>
     /// Builds and executes requests for operations under \movies\filter
     /// </summary>
-    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.19.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     internal partial class FilterRequestBuilder : BaseRequestBuilder
     {
         /// <summary>
@@ -81,7 +81,7 @@ namespace ApiSdk.Movies.Filter
         /// <summary>
         /// Search movies based on filter parameters
         /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.19.0")]
+        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         internal partial class FilterRequestBuilderGetQueryParameters 
         {
             /// <summary>production company</summary>

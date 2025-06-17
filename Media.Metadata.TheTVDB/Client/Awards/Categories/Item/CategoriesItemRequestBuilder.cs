@@ -14,7 +14,7 @@ namespace ApiSdk.Awards.Categories.Item
     /// <summary>
     /// Builds and executes requests for operations under \awards\categories\{id}
     /// </summary>
-    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.19.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     internal partial class CategoriesItemRequestBuilder : BaseRequestBuilder
     {
         /// <summary>The extended property</summary>

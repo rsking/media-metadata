@@ -13,7 +13,7 @@ namespace ApiSdk.Series.Item.Artworks
     /// <summary>
     /// Builds and executes requests for operations under \series\{id}\artworks
     /// </summary>
-    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.19.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     internal partial class ArtworksRequestBuilder : BaseRequestBuilder
     {
         /// <summary>
@@ -81,7 +81,7 @@ namespace ApiSdk.Series.Item.Artworks
         /// <summary>
         /// Returns series artworks base on language and type. &lt;br&gt; Note&amp;#58; Artwork type is an id that can be found using **/artwork/types** endpoint.
         /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.19.0")]
+        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         internal partial class ArtworksRequestBuilderGetQueryParameters 
         {
             /// <summary>lang</summary>

@@ -14,7 +14,7 @@ namespace ApiSdk.Series.Item.Episodes.Item
     /// <summary>
     /// Builds and executes requests for operations under \series\{id}\episodes\{season-type}
     /// </summary>
-    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.19.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     internal partial class SeasonTypeItemRequestBuilder : BaseRequestBuilder
     {
         /// <summary>Gets an item from the ApiSdk.series.item.episodes.item.item collection</summary>
@@ -94,7 +94,7 @@ namespace ApiSdk.Series.Item.Episodes.Item
         /// <summary>
         /// Returns series episodes from the specified season type, default returns the episodes in the series default season type
         /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.19.0")]
+        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         internal partial class SeasonTypeItemRequestBuilderGetQueryParameters 
         {
             /// <summary>airDate of the episode, format is yyyy-mm-dd</summary>

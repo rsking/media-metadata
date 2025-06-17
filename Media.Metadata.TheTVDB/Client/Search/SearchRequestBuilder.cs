@@ -14,7 +14,7 @@ namespace ApiSdk.Search
     /// <summary>
     /// Builds and executes requests for operations under \search
     /// </summary>
-    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.19.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     internal partial class SearchRequestBuilder : BaseRequestBuilder
     {
         /// <summary>The remoteid property</summary>
@@ -87,7 +87,7 @@ namespace ApiSdk.Search
         /// <summary>
         /// Our search index includes series, movies, people, and companies. Search is limited to 5k results max.
         /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.19.0")]
+        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         internal partial class SearchRequestBuilderGetQueryParameters 
         {
             /// <summary>Restrict results to a specific company (original network, production company, studio, etc).  As an example, &quot;The Walking Dead&quot; would have companies of &quot;AMC&quot;, &quot;AMC+&quot;, and &quot;Disney+&quot;.</summary>

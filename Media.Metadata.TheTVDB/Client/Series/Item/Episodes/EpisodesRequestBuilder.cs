@@ -12,7 +12,7 @@ namespace ApiSdk.Series.Item.Episodes
     /// <summary>
     /// Builds and executes requests for operations under \series\{id}\episodes
     /// </summary>
-    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.19.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     internal partial class EpisodesRequestBuilder : BaseRequestBuilder
     {
         /// <summary>Gets an item from the ApiSdk.series.item.episodes.item collection</summary>

@@ -15,7 +15,7 @@ namespace ApiSdk.Seasons
     /// <summary>
     /// Builds and executes requests for operations under \seasons
     /// </summary>
-    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.19.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     internal partial class SeasonsRequestBuilder : BaseRequestBuilder
     {
         /// <summary>The types property</summary>
@@ -100,7 +100,7 @@ namespace ApiSdk.Seasons
         /// <summary>
         /// returns list of seasons base records
         /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.19.0")]
+        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         internal partial class SeasonsRequestBuilderGetQueryParameters 
         {
             /// <summary>page number</summary>

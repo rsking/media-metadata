@@ -15,7 +15,7 @@ namespace ApiSdk.User
     /// <summary>
     /// Builds and executes requests for operations under \user
     /// </summary>
-    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.19.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     internal partial class UserRequestBuilder : BaseRequestBuilder
     {
         /// <summary>The favorites property</summary>

@@ -1,8 +1,8 @@
 {
-  "descriptionHash": "5117AEBDFCAB487C0690546AFB285AF2E2A295BA3372A0B92B14C655F4C4ADCC1D923E4CDDA5EE9E0AB9E3CDD5CCBB034032649DB206CCC819A98570A3BA23DF",
+  "descriptionHash": "16E1287694F81EEB162F1B64B4EEA75C86BE299CD08F74FB8476983C65EDBB28F170C6A1743960810208A022F986213C09B288102EF65696B5A09DACBA93AECF",
   "descriptionLocation": "https://thetvdb.github.io/v4-api/swagger.yml",
   "lockFileVersion": "1.0.0",
-  "kiotaVersion": "1.19.0",
+  "kiotaVersion": "1.27.0",
   "clientClassName": "ApiClient",
   "typeAccessModifier": "Internal",
   "clientNamespaceName": "ApiSdk",

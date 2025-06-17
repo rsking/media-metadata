@@ -15,7 +15,7 @@ namespace ApiSdk.People.Item
     /// <summary>
     /// Builds and executes requests for operations under \people\{id}
     /// </summary>
-    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.19.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     internal partial class PeopleItemRequestBuilder : BaseRequestBuilder
     {
         /// <summary>The extended property</summary>

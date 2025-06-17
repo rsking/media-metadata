@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Updates
 {
-    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.19.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
     internal enum GetTypeQueryParameterType
     #pragma warning restore CS1591

@@ -15,7 +15,7 @@ namespace ApiSdk.Seasons.Item
     /// <summary>
     /// Builds and executes requests for operations under \seasons\{id}
     /// </summary>
-    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.19.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     internal partial class SeasonsItemRequestBuilder : BaseRequestBuilder
     {
         /// <summary>The extended property</summary>

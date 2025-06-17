@@ -12,7 +12,7 @@ namespace ApiSdk.Inspiration
     /// <summary>
     /// Builds and executes requests for operations under \inspiration
     /// </summary>
-    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.19.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     internal partial class InspirationRequestBuilder : BaseRequestBuilder
     {
         /// <summary>The types property</summary>

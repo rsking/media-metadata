@@ -13,7 +13,7 @@ namespace ApiSdk.Content.Ratings
     /// <summary>
     /// Builds and executes requests for operations under \content\ratings
     /// </summary>
-    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.19.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     internal partial class RatingsRequestBuilder : BaseRequestBuilder
     {
         /// <summary>

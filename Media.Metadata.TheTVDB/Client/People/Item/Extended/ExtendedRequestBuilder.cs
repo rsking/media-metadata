@@ -13,7 +13,7 @@ namespace ApiSdk.People.Item.Extended
     /// <summary>
     /// Builds and executes requests for operations under \people\{id}\extended
     /// </summary>
-    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.19.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     internal partial class ExtendedRequestBuilder : BaseRequestBuilder
     {
         /// <summary>
@@ -81,7 +81,7 @@ namespace ApiSdk.People.Item.Extended
         /// <summary>
         /// Returns people extended record
         /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.19.0")]
+        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         internal partial class ExtendedRequestBuilderGetQueryParameters 
         {
             /// <summary>meta</summary>

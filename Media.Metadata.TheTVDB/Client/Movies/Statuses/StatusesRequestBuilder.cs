@@ -13,7 +13,7 @@ namespace ApiSdk.Movies.Statuses
     /// <summary>
     /// Builds and executes requests for operations under \movies\statuses
     /// </summary>
-    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.19.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     internal partial class StatusesRequestBuilder : BaseRequestBuilder
     {
         /// <summary>
