@@ -18,11 +18,17 @@ internal sealed partial class EpisodeSearchViewModel(IShowSearch showSearch) : V
 
     private readonly IShowSearch showSearch = showSearch;
 
+    /// <summary>
+    /// Gets or sets the selected series.
+    /// </summary>
     [CommunityToolkit.Mvvm.ComponentModel.ObservableProperty]
-    private Series? selectedSeries;
+    public partial Series? SelectedSeries { get; set; }
 
+    /// <summary>
+    /// Gets or sets the selected season.
+    /// </summary>
     [CommunityToolkit.Mvvm.ComponentModel.ObservableProperty]
-    private Season? selectedSeason;
+    public partial Season? SelectedSeason { get; set; }
 
     /// <summary>
     /// Gets the series.

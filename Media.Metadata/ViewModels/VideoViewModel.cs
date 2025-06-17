@@ -21,24 +21,6 @@ internal partial class VideoViewModel : CommunityToolkit.Mvvm.ComponentModel.Obs
     private readonly System.Collections.ObjectModel.ObservableCollection<string> cast = [];
     private readonly System.Collections.ObjectModel.ObservableCollection<string> composers = [];
 
-    [CommunityToolkit.Mvvm.ComponentModel.ObservableProperty]
-    private string? name;
-
-    [CommunityToolkit.Mvvm.ComponentModel.ObservableProperty]
-    private string? description;
-
-    [CommunityToolkit.Mvvm.ComponentModel.ObservableProperty]
-    private DateTimeOffset? release;
-
-    [CommunityToolkit.Mvvm.ComponentModel.ObservableProperty]
-    private string? work;
-
-    private ImageSource? imageSource;
-
-    private SixLabors.ImageSharp.Image? image;
-
-    private SixLabors.ImageSharp.Formats.IImageFormat? imageFormat;
-
     private bool disposedValue;
 
     /// <summary>
@@ -72,12 +54,36 @@ internal partial class VideoViewModel : CommunityToolkit.Mvvm.ComponentModel.Obs
         FillFrom(video.Composers, this.composers);
         this.Release = video is { Release: { Ticks: not 0 } videoRelease } ? new DateTimeOffset(videoRelease) : default(DateTimeOffset?);
         this.Rating = new RatingViewModel(video.Rating);
-        this.work = video.Work;
+        this.Work = video.Work;
         this.Tracks = [.. video.Tracks.Select(track => new MediaTrackViewModel(track))];
         this.Image = image;
         this.ImageFormat = imageFormat;
         this.ImageSource = imageSource;
     }
+
+    /// <summary>
+    /// Gets or sets the name.
+    /// </summary>
+    [CommunityToolkit.Mvvm.ComponentModel.ObservableProperty]
+    public partial string? Name { get; set; }
+
+    /// <summary>
+    /// Gets or sets the description.
+    /// </summary>
+    [CommunityToolkit.Mvvm.ComponentModel.ObservableProperty]
+    public partial string? Description { get; set; }
+
+    /// <summary>
+    /// Gets or sets the release.
+    /// </summary>
+    [CommunityToolkit.Mvvm.ComponentModel.ObservableProperty]
+    public partial DateTimeOffset? Release { get; set; }
+
+    /// <summary>
+    /// Gets or sets the work.
+    /// </summary>
+    [CommunityToolkit.Mvvm.ComponentModel.ObservableProperty]
+    public partial string? Work { get; set; }
 
     /// <summary>
     /// Gets or sets the video type.
@@ -133,25 +139,16 @@ internal partial class VideoViewModel : CommunityToolkit.Mvvm.ComponentModel.Obs
     public IList<string> Composers { get => this.composers; init => FillFrom(value, this.composers); }
 
     /// <inheritdoc/>
-    public ImageSource? ImageSource
-    {
-        get => this.imageSource;
-        private set => this.SetProperty(ref this.imageSource, value);
-    }
+    [CommunityToolkit.Mvvm.ComponentModel.ObservableProperty]
+    public partial ImageSource? ImageSource { get; private set; }
 
     /// <inheritdoc/>
-    public SixLabors.ImageSharp.Image? Image
-    {
-        get => this.image;
-        set => this.SetProperty(ref this.image, value);
-    }
+    [CommunityToolkit.Mvvm.ComponentModel.ObservableProperty]
+    public partial SixLabors.ImageSharp.Image? Image { get; set; }
 
     /// <inheritdoc/>
-    public SixLabors.ImageSharp.Formats.IImageFormat? ImageFormat
-    {
-        get => this.imageFormat;
-        set => this.SetProperty(ref this.imageFormat, value);
-    }
+    [CommunityToolkit.Mvvm.ComponentModel.ObservableProperty]
+    public partial SixLabors.ImageSharp.Formats.IImageFormat? ImageFormat { get; set; }
 
     /// <inheritdoc/>
     public void Dispose()
@@ -243,19 +240,19 @@ internal partial class VideoViewModel : CommunityToolkit.Mvvm.ComponentModel.Obs
         {
             if (disposing)
             {
-                if (this.imageSource is IDisposable imageSourceDisposable)
+                if (this.ImageSource is IDisposable imageSourceDisposable)
                 {
                     imageSourceDisposable.Dispose();
                 }
 
-                this.imageSource = default;
+                this.ImageSource = default;
 
-                if (this.image is IDisposable imageDisposable)
+                if (this.Image is IDisposable imageDisposable)
                 {
                     imageDisposable.Dispose();
                 }
 
-                this.image = default;
+                this.Image = default;
             }
 
             this.disposedValue = true;
@@ -268,10 +265,10 @@ internal partial class VideoViewModel : CommunityToolkit.Mvvm.ComponentModel.Obs
     /// <returns>The value task.</returns>
     protected virtual async ValueTask DisposeAsyncCore()
     {
-        await DisposeAsync(this.imageSource).ConfigureAwait(false);
-        this.imageSource = default;
-        await DisposeAsync(this.image).ConfigureAwait(false);
-        this.image = default;
+        await DisposeAsync(this.ImageSource).ConfigureAwait(false);
+        this.ImageSource = default;
+        await DisposeAsync(this.Image).ConfigureAwait(false);
+        this.Image = default;
 
         static async ValueTask DisposeAsync(object? value)
         {

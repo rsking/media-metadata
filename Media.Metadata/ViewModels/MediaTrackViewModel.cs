@@ -14,8 +14,11 @@ internal sealed partial class MediaTrackViewModel(MediaTrack mediaTrack) : Commu
 {
     private static IEnumerable<string>? languages;
 
+    /// <summary>
+    /// Gets or sets the selected language.
+    /// </summary>
     [CommunityToolkit.Mvvm.ComponentModel.ObservableProperty]
-    private string? selectedLanguage = mediaTrack.Language;
+    public partial string? SelectedLanguage { get; set; } = mediaTrack.Language;
 
     /// <summary>
     /// Gets the ID.

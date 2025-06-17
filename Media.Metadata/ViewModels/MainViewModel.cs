@@ -19,20 +19,26 @@ internal sealed partial class MainViewModel(IReader reader, IUpdater updater) : 
 
     private readonly IUpdater updater = updater;
 
+    /// <summary>
+    /// Gets or sets the selected video.
+    /// </summary>
     [CommunityToolkit.Mvvm.ComponentModel.ObservableProperty]
     [CommunityToolkit.Mvvm.ComponentModel.NotifyPropertyChangedFor(nameof(SelectedEditableVideo))]
     [CommunityToolkit.Mvvm.ComponentModel.NotifyPropertyChangedFor(nameof(CanSave))]
     [CommunityToolkit.Mvvm.ComponentModel.NotifyCanExecuteChangedFor(nameof(SaveCommand))]
     [CommunityToolkit.Mvvm.ComponentModel.NotifyPropertyChangedFor(nameof(CanSearch))]
     [CommunityToolkit.Mvvm.ComponentModel.NotifyCanExecuteChangedFor(nameof(SearchCommand))]
-    private Video? selectedVideo;
+    public partial Video? SelectedVideo { get; set; }
 
+    /// <summary>
+    /// Gets a value indicating whether this instance is saving.
+    /// </summary>
     [CommunityToolkit.Mvvm.ComponentModel.ObservableProperty]
     [CommunityToolkit.Mvvm.ComponentModel.NotifyPropertyChangedFor(nameof(CanSave))]
     [CommunityToolkit.Mvvm.ComponentModel.NotifyCanExecuteChangedFor(nameof(SaveCommand))]
     [CommunityToolkit.Mvvm.ComponentModel.NotifyPropertyChangedFor(nameof(CanSearch))]
     [CommunityToolkit.Mvvm.ComponentModel.NotifyCanExecuteChangedFor(nameof(SearchCommand))]
-    private bool isSaving;
+    public partial bool IsSaving { get; private set; }
 
 #pragma warning disable IDE0028 // Simplify collection initialization
     /// <summary>

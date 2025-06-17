@@ -9,17 +9,14 @@ namespace Media.Metadata.ViewModels;
 /// <summary>
 /// An editable <see cref="Movie"/>.
 /// </summary>
-internal sealed partial class MovieViewModel : VideoViewModel
+/// <param name="movie">The movie.</param>
+internal sealed partial class MovieViewModel(Models.LocalMovieWithImageSource movie) : VideoViewModel(movie, movie.FileInfo, movie.Image, movie.ImageFormat, movie.ImageSource)
 {
-    [CommunityToolkit.Mvvm.ComponentModel.ObservableProperty]
-    private string? edition;
-
     /// <summary>
-    /// Initialises a new instance of the <see cref="MovieViewModel"/> class.
+    /// Gets or sets the edition.
     /// </summary>
-    /// <param name="movie">The movie.</param>
-    public MovieViewModel(Models.LocalMovieWithImageSource movie)
-        : base(movie, movie.FileInfo, movie.Image, movie.ImageFormat, movie.ImageSource) => this.Edition = movie.Edition;
+    [CommunityToolkit.Mvvm.ComponentModel.ObservableProperty]
+    public partial string? Edition { get; set; } = movie.Edition;
 
     /// <inheritdoc/>
     public override Task<Video> ToVideoAsync(CancellationToken cancellationToken = default) => Task.FromResult<Video>(
@@ -38,9 +35,9 @@ internal sealed partial class MovieViewModel : VideoViewModel
     public override void Update(Video video)
     {
         base.Update(video);
-        if (video is Movie movie)
+        if (video is Movie videoAsMovie)
         {
-            this.Edition = movie.Edition;
+            this.Edition = videoAsMovie.Edition;
         }
     }
 }

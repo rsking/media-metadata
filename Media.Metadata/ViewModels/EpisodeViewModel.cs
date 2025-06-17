@@ -9,40 +9,44 @@ namespace Media.Metadata.ViewModels;
 /// <summary>
 /// An editable <see cref="Episode"/>.
 /// </summary>
-internal sealed partial class EpisodeViewModel : VideoViewModel
+/// <param name="episode">The episode.</param>
+internal sealed partial class EpisodeViewModel(Models.LocalEpisodeWithImageSource episode) : VideoViewModel(episode, episode.FileInfo, episode.Image, episode.ImageFormat, episode.ImageSource)
 {
+    /// <summary>
+    /// Gets or sets the show.
+    /// </summary>
     [CommunityToolkit.Mvvm.ComponentModel.ObservableProperty]
-    private string? show;
-
-    [CommunityToolkit.Mvvm.ComponentModel.ObservableProperty]
-    private string? network;
-
-    [CommunityToolkit.Mvvm.ComponentModel.ObservableProperty]
-    private int? season;
-
-    [CommunityToolkit.Mvvm.ComponentModel.ObservableProperty]
-    private int? number;
-
-    [CommunityToolkit.Mvvm.ComponentModel.ObservableProperty]
-    private string? id;
-
-    [CommunityToolkit.Mvvm.ComponentModel.ObservableProperty]
-    private int? part;
+    public partial string? Show { get; set; } = episode.Show;
 
     /// <summary>
-    /// Initialises a new instance of the <see cref="EpisodeViewModel"/> class.
+    /// Gets or sets the network.
     /// </summary>
-    /// <param name="episode">The episode.</param>
-    public EpisodeViewModel(Models.LocalEpisodeWithImageSource episode)
-        : base(episode, episode.FileInfo, episode.Image, episode.ImageFormat, episode.ImageSource)
-    {
-        this.Show = episode.Show;
-        this.Network = episode.Network;
-        this.Season = episode.Season;
-        this.Number = episode.Number;
-        this.Id = episode.Id;
-        this.Part = episode.Part;
-    }
+    [CommunityToolkit.Mvvm.ComponentModel.ObservableProperty]
+    public partial string? Network { get; set; } = episode.Network;
+
+    /// <summary>
+    /// Gets or sets the season.
+    /// </summary>
+    [CommunityToolkit.Mvvm.ComponentModel.ObservableProperty]
+    public partial int? Season { get; set; } = episode.Season;
+
+    /// <summary>
+    /// Gets or sets the number.
+    /// </summary>
+    [CommunityToolkit.Mvvm.ComponentModel.ObservableProperty]
+    public partial int? Number { get; set; } = episode.Number;
+
+    /// <summary>
+    /// Gets or sets the ID.
+    /// </summary>
+    [CommunityToolkit.Mvvm.ComponentModel.ObservableProperty]
+    public partial string? Id { get; set; } = episode.Id;
+
+    /// <summary>
+    /// Gets or sets the part.
+    /// </summary>
+    [CommunityToolkit.Mvvm.ComponentModel.ObservableProperty]
+    public partial int? Part { get; set; } = episode.Part;
 
     /// <inheritdoc/>
     public override Task<Video> ToVideoAsync(CancellationToken cancellationToken = default) => Task.FromResult<Video>(
@@ -67,14 +71,14 @@ internal sealed partial class EpisodeViewModel : VideoViewModel
     {
         base.Update(video);
 
-        if (video is Episode episode)
+        if (video is Episode videoAsEpisode)
         {
-            this.Show = episode.Show;
-            this.Network = episode.Network;
-            this.Season = episode.Season;
-            this.Number = episode.Number;
-            this.Id = episode.Id;
-            this.Part = episode.Part;
+            this.Show = videoAsEpisode.Show;
+            this.Network = videoAsEpisode.Network;
+            this.Season = videoAsEpisode.Season;
+            this.Number = videoAsEpisode.Number;
+            this.Id = videoAsEpisode.Id;
+            this.Part = videoAsEpisode.Part;
         }
     }
 }

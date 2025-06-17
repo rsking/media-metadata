@@ -15,20 +15,17 @@ internal abstract partial class VideoSearchViewModel : CommunityToolkit.Mvvm.Com
 {
     private readonly System.Collections.ObjectModel.ObservableCollection<Video> videos = [];
 
+    /// <summary>
+    /// Gets or sets the selected video.
+    /// </summary>
     [CommunityToolkit.Mvvm.ComponentModel.ObservableProperty]
-    private Video? selectedVideo;
-
-    [CommunityToolkit.Mvvm.ComponentModel.ObservableProperty]
-    private Country? selectedCountry;
+    public partial Video? SelectedVideo { get; set; }
 
     /// <summary>
-    /// Initialises a new instance of the <see cref="VideoSearchViewModel"/> class.
+    /// Gets or sets the selected country.
     /// </summary>
-    protected VideoSearchViewModel()
-    {
-        this.Countries = Country.All;
-        this.SelectedCountry = Country.Australia;
-    }
+    [CommunityToolkit.Mvvm.ComponentModel.ObservableProperty]
+    public partial Country? SelectedCountry { get; set; } = Country.Australia;
 
     /// <summary>
     /// Gets or sets the name.
@@ -38,7 +35,7 @@ internal abstract partial class VideoSearchViewModel : CommunityToolkit.Mvvm.Com
     /// <summary>
     /// Gets the countries.
     /// </summary>
-    public IEnumerable<Country> Countries { get; }
+    public IEnumerable<Country> Countries { get; } = Country.All;
 
     /// <summary>
     /// Gets the videos.
