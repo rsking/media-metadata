@@ -9,9 +9,6 @@ namespace Media.Metadata.ViewModels;
 /// <summary>
 /// The <see cref="MediaTrack"/> view model.
 /// </summary>
-/// <remarks>
-/// Initialises a new instance of the <see cref="MediaTrackViewModel"/> class.
-/// </remarks>
 /// <param name="mediaTrack">The media track.</param>
 internal sealed partial class MediaTrackViewModel(MediaTrack mediaTrack) : CommunityToolkit.Mvvm.ComponentModel.ObservableObject
 {

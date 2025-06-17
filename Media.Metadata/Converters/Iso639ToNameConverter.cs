@@ -9,7 +9,7 @@ namespace Media.Metadata.Converters;
 /// <summary>
 /// The ISO639 to Name converter.
 /// </summary>
-internal sealed class Iso639ToNameConverter : Microsoft.UI.Xaml.Data.IValueConverter
+internal sealed partial class Iso639ToNameConverter : Microsoft.UI.Xaml.Data.IValueConverter
 {
     private static readonly object LoadingLock = new();
 

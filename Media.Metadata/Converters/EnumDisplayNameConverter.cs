@@ -11,7 +11,7 @@ using System.Reflection;
 /// <summary>
 /// A value converter that takes enum value and returns name of the enum.
 /// </summary>
-public class EnumDisplayNameConverter : Microsoft.UI.Xaml.Data.IValueConverter
+public partial class EnumDisplayNameConverter : Microsoft.UI.Xaml.Data.IValueConverter
 {
     /// <inheritdoc/>
     public object? Convert(object value, Type targetType, object parameter, string language)

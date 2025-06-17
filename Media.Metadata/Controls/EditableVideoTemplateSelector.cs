@@ -9,7 +9,7 @@ namespace Media.Metadata.Controls;
 /// <summary>
 /// The <see cref="Models.VideoViewModel"/> <see cref="Microsoft.UI.Xaml.Controls.DataTemplateSelector"/>.
 /// </summary>
-internal sealed class EditableVideoTemplateSelector : Microsoft.UI.Xaml.Controls.DataTemplateSelector
+internal sealed partial class EditableVideoTemplateSelector : Microsoft.UI.Xaml.Controls.DataTemplateSelector
 {
     /// <summary>
     /// Gets or sets the video template.

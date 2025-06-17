@@ -11,9 +11,6 @@ using Microsoft.UI.Xaml.Controls;
 /// <summary>
 /// The main view model.
 /// </summary>
-/// <remarks>
-/// Initialises a new instance of the <see cref="MainViewModel"/> class.
-/// </remarks>
 /// <param name="reader">The reader.</param>
 /// <param name="updater">The updater.</param>
 internal sealed partial class MainViewModel(IReader reader, IUpdater updater) : CommunityToolkit.Mvvm.ComponentModel.ObservableObject

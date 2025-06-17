@@ -10,7 +10,7 @@ namespace Media.Metadata.Markup;
 /// The <see langword="enum"/> type extension.
 /// </summary>
 [Microsoft.UI.Xaml.Markup.MarkupExtensionReturnType(ReturnType = typeof(Array))]
-public sealed class EnumValuesExtension : Microsoft.UI.Xaml.Markup.MarkupExtension
+public sealed partial class EnumValuesExtension : Microsoft.UI.Xaml.Markup.MarkupExtension
 {
     /// <summary>
     /// Gets or sets the <see cref="Type"/> of the target <see langword="enum"/>.

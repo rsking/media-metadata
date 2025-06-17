@@ -10,7 +10,7 @@ namespace Media.Metadata.Models;
 /// A movie with an <see cref="ImageSource"/>.
 /// </summary>
 /// <inheritdoc />
-internal record class MovieWithImageSource(
+internal partial record class MovieWithImageSource(
     string? Name,
     string? Description,
     IEnumerable<string>? Producers,

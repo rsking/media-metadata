@@ -9,9 +9,6 @@ namespace Media.Metadata.ViewModels;
 /// <summary>
 /// The <see cref="Episode"/> <see cref="VideoSearchViewModel"/>.
 /// </summary>
-/// <remarks>
-/// Initialises a new instance of the <see cref="EpisodeSearchViewModel"/> class.
-/// </remarks>
 /// <param name="showSearch">The series search.</param>
 internal sealed partial class EpisodeSearchViewModel(IShowSearch showSearch) : VideoSearchViewModel
 {

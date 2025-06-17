@@ -9,7 +9,7 @@ namespace Media.Metadata.Converters;
 /// <summary>
 /// The <see cref="bool"/> to <see cref="Microsoft.UI.Xaml.Visibility"/> <see cref="Microsoft.UI.Xaml.Data.IValueConverter"/>.
 /// </summary>
-internal sealed class BooleanToVisibilityConverter : Microsoft.UI.Xaml.Data.IValueConverter
+internal sealed partial class BooleanToVisibilityConverter : Microsoft.UI.Xaml.Data.IValueConverter
 {
     /// <inheritdoc/>
     public object Convert(object value, Type targetType, object parameter, string language)

@@ -9,7 +9,7 @@ namespace Media.Metadata.Converters;
 /// <summary>
 /// <see cref="Microsoft.UI.Xaml.Data.IValueConverter"/> to convert <see cref="DateTime"/> to <see cref="DateTimeOffset"/> instances.
 /// </summary>
-internal sealed class DateTimeToDateTimeOffsetConverter : Microsoft.UI.Xaml.Data.IValueConverter
+internal sealed partial class DateTimeToDateTimeOffsetConverter : Microsoft.UI.Xaml.Data.IValueConverter
 {
     /// <inheritdoc/>
     public object? Convert(object value, Type targetType, object parameter, string language) => value switch

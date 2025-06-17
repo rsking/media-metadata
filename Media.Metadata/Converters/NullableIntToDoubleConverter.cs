@@ -9,7 +9,7 @@ namespace Media.Metadata.Converters;
 /// <summary>
 /// The converter from a <see cref="int?"/> to a <see cref="double"/>.
 /// </summary>
-internal sealed class NullableIntToDoubleConverter : Microsoft.UI.Xaml.Data.IValueConverter
+internal sealed partial class NullableIntToDoubleConverter : Microsoft.UI.Xaml.Data.IValueConverter
 {
     /// <inheritdoc/>
     public object? Convert(object value, Type targetType, object parameter, string language) => value switch

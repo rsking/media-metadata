@@ -10,7 +10,7 @@ namespace Media.Metadata.Markup;
 /// Gets the resource string.
 /// </summary>
 [Microsoft.UI.Xaml.Markup.MarkupExtensionReturnType(ReturnType = typeof(string))]
-public sealed class ResourceString : Microsoft.UI.Xaml.Markup.MarkupExtension
+public sealed partial class ResourceString : Microsoft.UI.Xaml.Markup.MarkupExtension
 {
     /// <summary>
     /// Gets or sets the name.

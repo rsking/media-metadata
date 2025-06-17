@@ -13,7 +13,7 @@ using Windows.Graphics.Imaging;
 /// <summary>
 /// The converter from a <see cref="System.Drawing.Image"/> to a <see cref="ImageSource"/>.
 /// </summary>
-public sealed class ImageToImageSourceConverter : Microsoft.UI.Xaml.Data.IValueConverter
+public sealed partial class ImageToImageSourceConverter : Microsoft.UI.Xaml.Data.IValueConverter
 {
     /// <inheritdoc/>
     public object? Convert(object? value, Type targetType, object parameter, string language)
