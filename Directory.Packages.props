@@ -12,19 +12,19 @@
     <PackageVersion Include="Microsoft.Bcl.AsyncInterfaces" Version="9.0.6" />
     <PackageVersion Include="Microsoft.Extensions.Configuration.UserSecrets" Version="9.0.6" />
     <PackageVersion Include="Microsoft.Extensions.Hosting" Version="9.0.6" />
-    <PackageVersion Include="Microsoft.WindowsAppSDK" Version="1.6.250430001" />
+    <PackageVersion Include="Microsoft.WindowsAppSDK" Version="1.7.250606001" />
     <PackageVersion Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.4188" />
-    <PackageVersion Include="Microsoft.Xaml.Behaviors.WinUI.Managed" Version="2.0.9" />
+    <PackageVersion Include="Microsoft.Xaml.Behaviors.WinUI.Managed" Version="3.0.0" />
     <PackageVersion Include="NeoSmart.AsyncLock" Version="3.2.1" />
     <PackageVersion Include="RestSharp" Version="112.1.0" />
     <PackageVersion Include="SixLabors.ImageSharp" Version="2.1.10" />
     <PackageVersion Include="System.CommandLine.Hosting" Version="0.4.0-alpha.24324.2" />
-    <PackageVersion Include="System.Linq.Async" Version="6.0.1" />
+    <PackageVersion Include="System.Linq.Async" Version="6.0.3" />
     <PackageVersion Include="System.Text.Encoding.CodePages" Version="9.0.6" />
     <PackageVersion Include="TagLibSharp" Version="2.3.0" />
     <PackageVersion Include="TMDbLib" Version="2.2.0" />
-    <PackageVersion Include="Vanara.PInvoke.Shell32" Version="4.1.3" />
-    <PackageVersion Include="Vanara.PInvoke.User32" Version="4.1.3" />
+    <PackageVersion Include="Vanara.PInvoke.Shell32" Version="4.1.4" />
+    <PackageVersion Include="Vanara.PInvoke.User32" Version="4.1.4" />
   </ItemGroup>
 
   <ItemGroup Label="Kiota">
