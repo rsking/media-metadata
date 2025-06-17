@@ -13,7 +13,7 @@ internal sealed class TrackList : IReadOnlyList<Track>
 {
     private readonly IList<Track> tracks;
 
-    private TrackList(IEnumerable<Track> tracks) => this.tracks = new List<Track>(tracks);
+    private TrackList(IEnumerable<Track> tracks) => this.tracks = [.. tracks];
 
     private TrackList() => this.tracks = [];
 

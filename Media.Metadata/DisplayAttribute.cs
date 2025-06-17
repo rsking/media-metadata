@@ -24,9 +24,6 @@ public sealed class DisplayAttribute : Attribute
     private bool? autoGenerateFilter;
     private int? order;
 
-    [System.Diagnostics.CodeAnalysis.DynamicallyAccessedMembers(System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes.PublicProperties)]
-    private Type? resourceType;
-
     /// <summary>
     ///     Gets or sets the ShortName attribute property, which may be a resource key string.
     ///     <para>
@@ -159,15 +156,16 @@ public sealed class DisplayAttribute : Attribute
     ///     <see cref="GetName" />, <see cref="GetDescription" />, <see cref="GetPrompt" />, and <see cref="GetGroupName" />
     ///     methods to return localized values.
     /// </summary>
+    [field: System.Diagnostics.CodeAnalysis.DynamicallyAccessedMembers(System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes.PublicProperties)]
     [System.Diagnostics.CodeAnalysis.DynamicallyAccessedMembers(System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes.PublicProperties)]
     public Type? ResourceType
     {
-        get => this.resourceType;
+        get;
         set
         {
-            if (this.resourceType != value)
+            if (field != value)
             {
-                this.resourceType = value;
+                field = value;
 
                 this.shortName.ResourceType = value;
                 this.name.ResourceType = value;
@@ -314,34 +312,30 @@ public sealed class DisplayAttribute : Attribute
     {
         private Func<string?>? cachedResult;
 
-        private string? propertyValue;
-
-        [System.Diagnostics.CodeAnalysis.DynamicallyAccessedMembers(System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes.PublicProperties)]
-        private Type? resourceType;
-
         public string? Value
         {
-            get => this.propertyValue;
+            get;
             set
             {
-                if (!string.Equals(this.propertyValue, value, StringComparison.Ordinal))
+                if (!string.Equals(field, value, StringComparison.Ordinal))
                 {
                     this.ClearCache();
-                    this.propertyValue = value;
+                    field = value;
                 }
             }
         }
 
+        [field: System.Diagnostics.CodeAnalysis.DynamicallyAccessedMembers(System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes.PublicProperties)]
         [System.Diagnostics.CodeAnalysis.DynamicallyAccessedMembers(System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes.PublicProperties)]
         public Type? ResourceType
         {
-            get => this.resourceType;
+            get;
             set
             {
-                if (this.resourceType != value)
+                if (field != value)
                 {
                     this.ClearCache();
-                    this.resourceType = value;
+                    field = value;
                 }
             }
         }
@@ -352,14 +346,14 @@ public sealed class DisplayAttribute : Attribute
             {
                 // If the property value is null, then just cache that value
                 // If the resource type is null, then property value is literal, so cache it
-                if (this.propertyValue is null || this.resourceType is null)
+                if (this.Value is null || this.ResourceType is null)
                 {
-                    this.cachedResult = () => this.propertyValue;
+                    this.cachedResult = () => this.Value;
                 }
                 else
                 {
                     // Get the property from the resource type for this resource key
-                    var property = this.resourceType.GetRuntimeProperties().FirstOrDefault(property => string.Equals(property.Name, this.propertyValue, StringComparison.Ordinal));
+                    var property = this.ResourceType.GetRuntimeProperties().FirstOrDefault(property => string.Equals(property.Name, this.Value, StringComparison.Ordinal));
 
                     // We need to detect bad configurations so that we can throw exceptions accordingly
                     var badlyConfigured = false;

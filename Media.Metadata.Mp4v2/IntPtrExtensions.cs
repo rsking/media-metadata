@@ -21,7 +21,7 @@ internal static class IntPtrExtensions
     /// <exception cref="ArgumentNullException">Thrown when this <see cref="IntPtr"/> is a null pointer (<see cref="IntPtr.Zero"/>).</exception>
     public static T ToStructure<T>(this IntPtr value) => value == IntPtr.Zero
         ? throw new ArgumentNullException(nameof(value), $"Structures cannot be read from a null pointer ({nameof(IntPtr)}.{nameof(IntPtr.Zero)})")
-        : (T)Marshal.PtrToStructure(value, typeof(T));
+        : Marshal.PtrToStructure<T>(value);
 
     /// <summary>
     /// Reads a block of memory beginning at the location pointed to by the specified pointer value, and copies the contents into a byte array of the specified length.

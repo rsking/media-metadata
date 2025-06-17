@@ -12,7 +12,6 @@ namespace Media.Metadata;
 internal sealed class Chapter : System.ComponentModel.INotifyPropertyChanged
 {
     private Guid id = Guid.NewGuid();
-    private string title = string.Empty;
     private TimeSpan duration = TimeSpan.FromSeconds(0);
 
     /// <inheritdoc />
@@ -23,16 +22,18 @@ internal sealed class Chapter : System.ComponentModel.INotifyPropertyChanged
     /// </summary>
     public string Title
     {
-        get => this.title;
+        get;
         set
         {
-            if (!string.Equals(this.title, value, StringComparison.Ordinal))
+            if (!string.Equals(field, value, StringComparison.Ordinal))
             {
-                this.title = value;
+                field = value;
                 this.OnPropertyChanged(nameof(this.Title));
             }
         }
     }
+
+    = string.Empty;
 
     /// <summary>
     /// Gets or sets the duration of this chapter.

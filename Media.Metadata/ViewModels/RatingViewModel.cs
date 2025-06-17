@@ -12,7 +12,7 @@ namespace Media.Metadata.ViewModels;
 /// <param name="rating">The rating.</param>
 internal sealed partial class RatingViewModel(Rating? rating) : CommunityToolkit.Mvvm.ComponentModel.ObservableObject
 {
-    private readonly System.Collections.ObjectModel.ObservableCollection<Rating> ratings = [..GetInitialRatings(rating)];
+    private readonly System.Collections.ObjectModel.ObservableCollection<Rating> ratings = [.. GetInitialRatings(rating)];
 
     /// <summary>
     /// Gets or sets the selected country.
