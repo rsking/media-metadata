@@ -120,9 +120,7 @@ internal sealed partial class MainViewModel(IReader reader, IUpdater updater) : 
 
         static IEnumerable<Video> GetSelectedVideos(ICollection<Video> videos)
         {
-            var v = new Video[videos.Count];
-            videos.CopyTo(v, 0);
-            return v;
+            return [.. videos];
         }
     }
 
@@ -161,13 +159,7 @@ internal sealed partial class MainViewModel(IReader reader, IUpdater updater) : 
 
             static IDictionary<MediaTrackType, string> GetLanguages(IEnumerable<MediaTrack> tracks)
             {
-                var dictionary = new Dictionary<MediaTrackType, string>();
-                foreach (var track in tracks)
-                {
-                    dictionary.Add((MediaTrackType)track.Id, track.Language ?? "und");
-                }
-
-                return dictionary;
+                return tracks.ToDictionary(track => (MediaTrackType)track.Id, track => track.Language ?? "und");
             }
 
             // refresh the local video from the file
