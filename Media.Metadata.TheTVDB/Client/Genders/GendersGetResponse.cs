@@ -45,7 +45,7 @@ namespace ApiSdk.Genders
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
         public static global::ApiSdk.Genders.GendersGetResponse CreateFromDiscriminatorValue(IParseNode parseNode)
         {
-            _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
+            if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             return new global::ApiSdk.Genders.GendersGetResponse();
         }
         /// <summary>
@@ -66,7 +66,7 @@ namespace ApiSdk.Genders
         /// <param name="writer">Serialization writer to use to serialize this model</param>
         public virtual void Serialize(ISerializationWriter writer)
         {
-            _ = writer ?? throw new ArgumentNullException(nameof(writer));
+            if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfObjectValues<global::ApiSdk.Models.Gender>("data", Data);
             writer.WriteStringValue("status", Status);
             writer.WriteAdditionalData(AdditionalData);
