@@ -9,7 +9,7 @@ namespace Media.Metadata;
 /// <summary>
 /// Represents a remote movie.
 /// </summary>
-/// <inheritdoc />
+/// <inheritdoc cref="Movie" />
 public record class RemoteMovie(
     string? Name,
     string? Description,

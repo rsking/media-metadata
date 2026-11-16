@@ -67,28 +67,16 @@ public partial class ListDetailsView : ItemsControl
     {
         base.OnApplyTemplate();
 
-        if (this.inlineBackButton is not null)
-        {
-            this.inlineBackButton.Click -= this.OnInlineBackButtonClicked;
-        }
+        this.inlineBackButton?.Click -= this.OnInlineBackButtonClicked;
 
         this.inlineBackButton = (Button)this.GetTemplateChild(PartBackButton);
-        if (this.inlineBackButton is not null)
-        {
-            this.inlineBackButton.Click += this.OnInlineBackButtonClicked;
-        }
+        this.inlineBackButton?.Click += this.OnInlineBackButtonClicked;
 
         this.selectionStateGroup = (VisualStateGroup)this.GetTemplateChild(SelectionStates);
-        if (this.selectionStateGroup is not null)
-        {
-            this.selectionStateGroup.CurrentStateChanged += this.OnSelectionStateChanged;
-        }
+        this.selectionStateGroup?.CurrentStateChanged += this.OnSelectionStateChanged;
 
         this.twoPaneView = (TwoPaneView)this.GetTemplateChild(PartRootPanel);
-        if (this.twoPaneView is not null)
-        {
-            this.twoPaneView.ModeChanged += this.OnModeChanged;
-        }
+        this.twoPaneView?.ModeChanged += this.OnModeChanged;
 
         this.detailsPresenter = (ContentPresenter)this.GetTemplateChild(PartDetailsPresenter);
         this.SetDetailsContent();
@@ -185,17 +173,11 @@ public partial class ListDetailsView : ItemsControl
                 SystemNavigationManager.GetForCurrentView().BackRequested += this.OnBackRequested;
             }
 
-            if (this.frame is not null)
-            {
-                this.frame.Navigating -= this.OnFrameNavigating;
-            }
+            this.frame?.Navigating -= this.OnFrameNavigating;
 
             this.navigationView = this.FindAscendant<NavigationView>();
             this.frame = this.FindAscendant<Frame>();
-            if (this.frame is not null)
-            {
-                this.frame.Navigating += this.OnFrameNavigating;
-            }
+            this.frame?.Navigating += this.OnFrameNavigating;
         }
     }
 
@@ -208,17 +190,11 @@ public partial class ListDetailsView : ItemsControl
                 SystemNavigationManager.GetForCurrentView().BackRequested -= this.OnBackRequested;
             }
 
-            if (this.frame is not null)
-            {
-                this.frame.Navigating -= this.OnFrameNavigating;
-            }
+            this.frame?.Navigating -= this.OnFrameNavigating;
 
             this.selectionStateGroup = (VisualStateGroup)this.GetTemplateChild(SelectionStates);
-            if (this.selectionStateGroup is not null)
-            {
-                this.selectionStateGroup.CurrentStateChanged -= this.OnSelectionStateChanged;
-                this.selectionStateGroup = null;
-            }
+            this.selectionStateGroup?.CurrentStateChanged -= this.OnSelectionStateChanged;
+            this.selectionStateGroup = null;
         }
     }
 

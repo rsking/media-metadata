@@ -11,9 +11,9 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
 
-/// <summary>
+/// <content>
 /// Panel that allows for a List/Details pattern.
-/// </summary>
+/// </content>
 /// <seealso cref="ItemsControl" />
 public partial class ListDetailsView
 { /// <summary>

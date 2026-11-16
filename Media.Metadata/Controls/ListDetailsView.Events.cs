@@ -9,9 +9,9 @@ namespace Media.Metadata.Controls;
 using System;
 using Microsoft.UI.Xaml.Controls;
 
-/// <summary>
+/// <content>
 /// Panel that allows for a List/Details pattern.
-/// </summary>
+/// </content>
 /// <seealso cref="ItemsControl" />
 [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "MA0046:Use EventHandler<T> to declare events", Justification = "Checked")]
 [System.Diagnostics.CodeAnalysis.SuppressMessage("Roslynator", "RCS1159:Use EventHandler<T>", Justification = "Checked")]

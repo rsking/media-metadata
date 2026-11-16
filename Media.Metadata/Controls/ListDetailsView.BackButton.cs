@@ -12,9 +12,9 @@ using Microsoft.UI.Xaml.Navigation;
 using Windows.ApplicationModel;
 using Windows.UI.Core;
 
-/// <summary>
+/// <content>
 /// Panel that allows for a List/Details pattern.
-/// </summary>
+/// </content>
 /// <seealso cref="ItemsControl" />
 [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1010: Collections should implement generic interface", Justification = "This is a control which is not strongly typed")]
 public partial class ListDetailsView
@@ -120,8 +120,9 @@ public partial class ListDetailsView
         }
     }
 
-    private void OnFrameNavigating(object? sender, NavigatingCancelEventArgs args)
+    private void OnFrameNavigating(object sender, NavigatingCancelEventArgs args)
     {
+        ArgumentNullException.ThrowIfNull(sender);
         if (args.NavigationMode is NavigationMode.Back && this.ViewState is ListDetailsViewState.Details)
         {
             this.ClearSelectedItem();
@@ -131,7 +132,7 @@ public partial class ListDetailsView
 
     private void OnBackRequested(object? sender, BackRequestedEventArgs args)
     {
-        if (this.ViewState is ListDetailsViewState.Details)
+        if (sender is not null && this.ViewState is ListDetailsViewState.Details)
         {
             // let the OnFrameNavigating method handle it if
             if (this.frame?.CanGoBack != true)
@@ -143,5 +144,10 @@ public partial class ListDetailsView
         }
     }
 
-    private void OnInlineBackButtonClicked(object? sender, RoutedEventArgs e) => this.ClearSelectedItem();
+    private void OnInlineBackButtonClicked(object sender, RoutedEventArgs e)
+    {
+        ArgumentNullException.ThrowIfNull(sender);
+        ArgumentNullException.ThrowIfNull(e);
+        this.ClearSelectedItem();
+    }
 }

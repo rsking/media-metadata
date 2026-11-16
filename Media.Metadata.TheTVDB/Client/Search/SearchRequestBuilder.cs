@@ -27,7 +27,7 @@ namespace ApiSdk.Search
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public SearchRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/search{?company*,country*,director*,language*,limit*,network*,offset*,primaryType*,q*,query*,remote_id*,type*,year*}", pathParameters)
+        public SearchRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/search{?company*,country*,director*,language*,limit*,network*,offset*,primaryLanguage*,primaryType*,q*,query*,remote_id*,type*,year*}", pathParameters)
         {
         }
         /// <summary>
@@ -35,7 +35,7 @@ namespace ApiSdk.Search
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public SearchRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/search{?company*,country*,director*,language*,limit*,network*,offset*,primaryType*,q*,query*,remote_id*,type*,year*}", rawUrl)
+        public SearchRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/search{?company*,country*,director*,language*,limit*,network*,offset*,primaryLanguage*,primaryType*,q*,query*,remote_id*,type*,year*}", rawUrl)
         {
         }
         /// <summary>
@@ -120,7 +120,8 @@ namespace ApiSdk.Search
             [QueryParameter("director")]
             public string Director { get; set; }
 #endif
-            /// <summary>Restrict results to a specific primary language.  Should include the 3 character language code.  Currently only used for series and movies.</summary>
+            /// <summary>Not applied to search results; kept for backwards compatibility. Use primaryLanguage to filter by primary language.</summary>
+            [Obsolete("")]
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("language")]
@@ -146,6 +147,16 @@ namespace ApiSdk.Search
             /// <summary>Offset results.</summary>
             [QueryParameter("offset")]
             public double? Offset { get; set; }
+            /// <summary>Restrict results to a specific primary language.  Should include the 3 character language code, such as &quot;eng&quot; (case-insensitive).  Only series and movies have a primary language, so other types are excluded.  Returns no results if nothing matches.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("primaryLanguage")]
+            public string? PrimaryLanguage { get; set; }
+#nullable restore
+#else
+            [QueryParameter("primaryLanguage")]
+            public string PrimaryLanguage { get; set; }
+#endif
             /// <summary>Restrict results to a specific type of company.  Should include the full name of the type of company, such as &quot;Production Company&quot;.  Only used for companies.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

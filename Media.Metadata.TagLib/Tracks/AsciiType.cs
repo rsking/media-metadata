@@ -9,6 +9,7 @@ namespace Media.Metadata.Tracks;
 /// <summary>
 /// The ASCII type.
 /// </summary>
+/// <param name="Type">The type.</param>
 internal readonly record struct AsciiType(byte[] Type) : IEquatable<byte[]>
 {
     public static bool operator ==(AsciiType lhs, byte[] rhs) => lhs.Equals(rhs);

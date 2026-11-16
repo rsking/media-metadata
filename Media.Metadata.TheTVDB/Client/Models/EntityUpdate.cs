@@ -31,16 +31,16 @@ namespace ApiSdk.Models
 #else
         public string ExtraInfo { get; set; }
 #endif
-        /// <summary>The mergeToEntityType property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? MergeToEntityType { get; set; }
-#nullable restore
-#else
-        public string MergeToEntityType { get; set; }
-#endif
         /// <summary>The mergeToId property</summary>
         public long? MergeToId { get; set; }
+        /// <summary>The mergeToType property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? MergeToType { get; set; }
+#nullable restore
+#else
+        public string MergeToType { get; set; }
+#endif
         /// <summary>The method property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -94,8 +94,8 @@ namespace ApiSdk.Models
             {
                 { "entityType", n => { EntityType = n.GetStringValue(); } },
                 { "extraInfo", n => { ExtraInfo = n.GetStringValue(); } },
-                { "mergeToEntityType", n => { MergeToEntityType = n.GetStringValue(); } },
                 { "mergeToId", n => { MergeToId = n.GetLongValue(); } },
+                { "mergeToType", n => { MergeToType = n.GetStringValue(); } },
                 { "method", n => { Method = n.GetStringValue(); } },
                 { "methodInt", n => { MethodInt = n.GetIntValue(); } },
                 { "recordId", n => { RecordId = n.GetLongValue(); } },
@@ -114,8 +114,8 @@ namespace ApiSdk.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("entityType", EntityType);
             writer.WriteStringValue("extraInfo", ExtraInfo);
-            writer.WriteStringValue("mergeToEntityType", MergeToEntityType);
             writer.WriteLongValue("mergeToId", MergeToId);
+            writer.WriteStringValue("mergeToType", MergeToType);
             writer.WriteStringValue("method", Method);
             writer.WriteIntValue("methodInt", MethodInt);
             writer.WriteLongValue("recordId", RecordId);

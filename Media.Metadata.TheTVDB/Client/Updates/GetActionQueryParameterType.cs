@@ -8,13 +8,17 @@ namespace ApiSdk.Updates
     internal enum GetActionQueryParameterType
     #pragma warning restore CS1591
     {
-        [EnumMember(Value = "delete")]
+        [EnumMember(Value = "create")]
         #pragma warning disable CS1591
-        Delete,
+        Create,
         #pragma warning restore CS1591
         [EnumMember(Value = "update")]
         #pragma warning disable CS1591
         Update,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "delete")]
+        #pragma warning disable CS1591
+        Delete,
         #pragma warning restore CS1591
     }
 }

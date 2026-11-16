@@ -103,9 +103,9 @@ internal sealed class ChapterExtractor(Stream stream)
 
                 TrakInfo ReadTrak(BoxInfo trakBox)
                 {
-                    var maximumLength = trakBox.BoxOffset + trakBox.Offset;
+                    var maximumTrackLength = trakBox.BoxOffset + trakBox.Offset;
                     var trakData = default(TrakInfo);
-                    foreach (var box in this.EnumerateBoxes(maximumLength))
+                    foreach (var box in this.EnumerateBoxes(maximumTrackLength))
                     {
                         if (box.Type == Tkhd)
                         {
@@ -339,7 +339,7 @@ internal sealed class ChapterExtractor(Stream stream)
                         if (length > 0)
                         {
                             this.Chapters = new ChapterInfo[length];
-                            var position = TimeSpan.FromSeconds(0);
+                            var position = TimeSpan.Zero;
                             var timeUnitPerSecond = textBox.TimeUnitPerSecond ?? 1D;
                             if (timeUnitPerSecond <= 0.1)
                             {

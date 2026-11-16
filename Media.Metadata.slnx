@@ -1,0 +1,34 @@
+<Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="arm64" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path=".gitattributes" />
+    <File Path=".gitignore" />
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Packages.props" />
+    <File Path="LICENSE" />
+    <File Path="nuget.config" />
+    <File Path="README.md" />
+  </Folder>
+  <Project Path="Media.Metadata.Console/Media.Metadata.Console.csproj" />
+  <Project Path="Media.Metadata.Core/Media.Metadata.Core.csproj" />
+  <Project Path="Media.Metadata.DependencyInjection/Media.Metadata.DependencyInjection.csproj" />
+  <Project Path="Media.Metadata.Mp4v2/Media.Metadata.Mp4v2.csproj" />
+  <Project Path="Media.Metadata.Plex/Media.Metadata.Plex.csproj" />
+  <Project Path="Media.Metadata.TagLib/Media.Metadata.TagLib.csproj" />
+  <Project Path="Media.Metadata.TheTVDB/Media.Metadata.TheTVDB.csproj" />
+  <Project Path="Media.Metadata.TMDb/Media.Metadata.TMDb.csproj" />
+  <Project Path="Media.Metadata.TvMaze/Media.Metadata.TvMaze.csproj" />
+  <Project Path="Media.Metadata/Media.Metadata.csproj">
+    <Platform Solution="*|Any CPU" Project="x64" />
+    <Platform Solution="*|arm64" Project="arm64" />
+    <Platform Solution="*|x64" Project="x64" />
+    <Platform Solution="*|x86" Project="x86" />
+    <Deploy Solution="Debug|Any CPU" />
+  </Project>
+</Solution>

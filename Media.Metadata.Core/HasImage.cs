@@ -44,7 +44,10 @@ public abstract record class HasImage : IHasImage, IAsyncDisposable, IDisposable
             return this.imageFormat;
         }
 
-        init => this.imageFormat = value;
+        init
+        {
+            this.imageFormat = value;
+        }
     }
 
     /// <inheritdoc/>

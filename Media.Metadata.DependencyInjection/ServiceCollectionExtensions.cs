@@ -67,7 +67,7 @@ public static class ServiceCollectionExtensions
     /// <returns>The input services.</returns>
     public static IServiceCollection AddMp4v2(this IServiceCollection services)
     {
-        if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.Windows))
+        if (OperatingSystem.IsWindows())
         {
             AddFileUpdaterCore(services);
         }

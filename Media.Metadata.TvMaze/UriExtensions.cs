@@ -35,7 +35,7 @@ public static class UriExtensions
 
         var usingBaseUri = baseUrl.AbsoluteUri.EndsWith("/", StringComparison.Ordinal) || IsEmpty(assembled)
             ? baseUrl
-            : new Uri($"{baseUrl!.AbsoluteUri}/");
+            : new Uri($"{baseUrl.AbsoluteUri}/");
 
         return assembled is not null
             ? new Uri(usingBaseUri, assembled)

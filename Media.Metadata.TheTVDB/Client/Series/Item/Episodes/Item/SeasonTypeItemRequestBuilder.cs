@@ -107,12 +107,18 @@ namespace ApiSdk.Series.Item.Episodes.Item
             [QueryParameter("airDate")]
             public string AirDate { get; set; }
 #endif
+            #pragma warning disable CS1591
             [QueryParameter("episodeNumber")]
             public int? EpisodeNumber { get; set; }
+            #pragma warning restore CS1591
+            #pragma warning disable CS1591
             [QueryParameter("page")]
             public int? Page { get; set; }
+            #pragma warning restore CS1591
+            #pragma warning disable CS1591
             [QueryParameter("season")]
             public int? Season { get; set; }
+            #pragma warning restore CS1591
         }
     }
 }

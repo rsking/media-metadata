@@ -1,12 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFrameworks>net10.0;net8.0</TargetFrameworks>
+    <NoWarn>$(NoWarn);S6418</NoWarn>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="TMDbLib" VersionOverride="1.9.1" />
+    <PackageReference Include="TMDbLib" VersionOverride="4.0.0" />
   </ItemGroup>
 
   <ItemGroup>

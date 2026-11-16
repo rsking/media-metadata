@@ -21,7 +21,7 @@ namespace ApiSdk.Series.Item.Extended
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public ExtendedRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/series/{id}/extended{?meta*,short*}", pathParameters)
+        public ExtendedRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/series/{id}/extended{?language*,meta*,short*}", pathParameters)
         {
         }
         /// <summary>
@@ -29,7 +29,7 @@ namespace ApiSdk.Series.Item.Extended
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public ExtendedRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/series/{id}/extended{?meta*,short*}", rawUrl)
+        public ExtendedRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/series/{id}/extended{?language*,meta*,short*}", rawUrl)
         {
         }
         /// <summary>
@@ -84,6 +84,16 @@ namespace ApiSdk.Series.Item.Extended
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         internal partial class ExtendedRequestBuilderGetQueryParameters 
         {
+            /// <summary>language for the season names. Each season `name` comes back in this language when the season has a name in it; otherwise it keeps the default (the series original language, or English when that one is missing). Use a language id from /languages.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("language")]
+            public string? Language { get; set; }
+#nullable restore
+#else
+            [QueryParameter("language")]
+            public string Language { get; set; }
+#endif
             /// <summary>meta</summary>
             [QueryParameter("meta")]
             public global::ApiSdk.Series.Item.Extended.GetMetaQueryParameterType? Meta { get; set; }

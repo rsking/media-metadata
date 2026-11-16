@@ -6,7 +6,7 @@
 
 namespace Media.Metadata;
 
-/// <inheritdoc/>
+/// <inheritdoc cref="Season"/>
 public record class RemoteSeason(int Number, IEnumerable<RemoteEpisode> RemoteEpisodes) : Season(Number, RemoteEpisodes), IRemoteImage
 {
     /// <inheritdoc/>

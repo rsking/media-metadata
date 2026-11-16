@@ -16,7 +16,7 @@ namespace ApiSdk.Series.Item.Episodes
     internal partial class EpisodesRequestBuilder : BaseRequestBuilder
     {
         /// <summary>Gets an item from the ApiSdk.series.item.episodes.item collection</summary>
-        /// <param name="position">season-type</param>
+        /// <param name="position">Episode order to list. One of `default` (the series&apos; default order), `official` (Aired Order), `dvd` (DVD Order), `absolute` (Absolute Order), `alternate` (Alternate Order), `regional` (Regional Order), `altdvd` (Alternate DVD Order) or `alttwo` (Alternate Order 2). These are the `type` values from `/seasons/types`. An unknown value currently returns an empty `episodes` list, not an error.</param>
         /// <returns>A <see cref="global::ApiSdk.Series.Item.Episodes.Item.SeasonTypeItemRequestBuilder"/></returns>
         public global::ApiSdk.Series.Item.Episodes.Item.SeasonTypeItemRequestBuilder this[string position]
         {

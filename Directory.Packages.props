@@ -5,50 +5,47 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageVersion Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+    <PackageVersion Include="Altemiq.CommandLine.Hosting" Version="3.0.0" />
+    <PackageVersion Include="CommunityToolkit.Mvvm" Version="8.4.2" />
     <PackageVersion Include="CommunityToolkit.WinUI.Controls.TokenizingTextBox" Version="8.2.251219" />
     <PackageVersion Include="Formatters.PList" Version="1.2.0" />
-    <PackageVersion Include="Microsoft.Bcl.AsyncInterfaces" Version="10.0.2" />
-    <PackageVersion Include="Microsoft.Extensions.Configuration.UserSecrets" Version="10.0.2" />
-    <PackageVersion Include="Microsoft.Extensions.Hosting" Version="10.0.2" />
-    <PackageVersion Include="Microsoft.WindowsAppSDK" Version="1.8.260101001" />
-    <PackageVersion Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.7463" />
+    <PackageVersion Include="Microsoft.Bcl.AsyncInterfaces" Version="11.0.0" />
+    <PackageVersion Include="Microsoft.Extensions.Configuration.UserSecrets" Version="11.0.0" />
+    <PackageVersion Include="Microsoft.Extensions.Hosting" Version="11.0.0" />
+    <PackageVersion Include="Microsoft.WindowsAppSDK" Version="2.6.5" />
+    <PackageVersion Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.28000.2957" />
     <PackageVersion Include="Microsoft.Xaml.Behaviors.WinUI.Managed" Version="3.0.1" />
     <PackageVersion Include="NeoSmart.AsyncLock" Version="3.2.1" />
-    <PackageVersion Include="RestSharp" Version="113.1.0" />
+    <PackageVersion Include="RestSharp" Version="114.1.0" />
     <PackageVersion Include="SixLabors.ImageSharp" Version="2.1.13" />
-    <PackageVersion Include="System.CommandLine.Hosting" Version="0.4.0-alpha.25316.103" />
-    <PackageVersion Include="System.Linq.Async" Version="7.0.0" />
     <PackageVersion Include="TagLibSharp" Version="2.3.0" />
-    <PackageVersion Include="TMDbLib" Version="2.3.0" />
-    <PackageVersion Include="Vanara.PInvoke.Shell32" Version="5.0.0" />
-    <PackageVersion Include="Vanara.PInvoke.User32" Version="5.0.0" />
+    <PackageVersion Include="Vanara.PInvoke.Shell32" Version="5.0.8" />
   </ItemGroup>
 
   <ItemGroup Label="Kiota">
-    <PackageVersion Include="Microsoft.Kiota.Abstractions" Version="1.21.1" />
-    <PackageVersion Include="Microsoft.Kiota.Authentication.Azure" Version="1.21.1" />
-    <PackageVersion Include="Microsoft.Kiota.Http.HttpClientLibrary" Version="1.21.1" />
-    <PackageVersion Include="Microsoft.Kiota.Serialization.Form" Version="1.21.1" />
-    <PackageVersion Include="Microsoft.Kiota.Serialization.Json" Version="1.21.1" />
-    <PackageVersion Include="Microsoft.Kiota.Serialization.Multipart" Version="1.21.1" />
-    <PackageVersion Include="Microsoft.Kiota.Serialization.Text" Version="1.21.1" />
+    <PackageVersion Include="Microsoft.Kiota.Abstractions" Version="2.1.6" />
+    <PackageVersion Include="Microsoft.Kiota.Authentication.Azure" Version="2.1.6" />
+    <PackageVersion Include="Microsoft.Kiota.Http.HttpClientLibrary" Version="2.1.6" />
+    <PackageVersion Include="Microsoft.Kiota.Serialization.Form" Version="2.1.6" />
+    <PackageVersion Include="Microsoft.Kiota.Serialization.Json" Version="2.1.6" />
+    <PackageVersion Include="Microsoft.Kiota.Serialization.Multipart" Version="2.1.6" />
+    <PackageVersion Include="Microsoft.Kiota.Serialization.Text" Version="2.1.6" />
   </ItemGroup>
 
   <ItemGroup Label="Source Generators">
-    <GlobalPackageReference Include="PolySharp" Version="1.15.0" />
+    <GlobalPackageReference Include="PolySharp" Version="1.17.1" />
   </ItemGroup>
 
   <ItemGroup Label="Analyzers">
-    <GlobalPackageReference Include="Meziantou.Analyzer" Version="2.0.283" />
-    <GlobalPackageReference Include="Roslynator.Analyzers" Version="4.15.0" />
-    <GlobalPackageReference Include="SonarAnalyzer.CSharp" Version="10.18.0.131500" />
-    <GlobalPackageReference Include="StyleCop.Analyzers.Unstable" Version="1.2.0.556" />
+    <GlobalPackageReference Include="Meziantou.Analyzer" Version="3.0.341" />
+    <GlobalPackageReference Include="Roslynator.Analyzers" Version="5.0.1" />
+    <GlobalPackageReference Include="SonarAnalyzer.CSharp" Version="10.36.0.15337" />
+    <GlobalPackageReference Include="StyleCop.Analyzers" Version="1.3.180" />
   </ItemGroup>
 
   <ItemGroup Label="Build">
-    <GlobalPackageReference Include="DotNet.ReproducibleBuilds" Version="1.2.39" />
-    <GlobalPackageReference Include="DotNet.ReproducibleBuilds.Isolated" Version="1.2.39" />
+    <GlobalPackageReference Include="DotNet.ReproducibleBuilds" Version="2.0.5" />
+    <GlobalPackageReference Include="DotNet.ReproducibleBuilds.Isolated" Version="2.0.5" />
   </ItemGroup>
   
 </Project>

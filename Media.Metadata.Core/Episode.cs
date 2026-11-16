@@ -9,6 +9,15 @@ namespace Media.Metadata;
 /// <summary>
 /// Represents an episode.
 /// </summary>
+/// <param name="Name">The name.</param>
+/// <param name="Description">The description.</param>
+/// <param name="Producers">The producers.</param>
+/// <param name="Directors">The directors.</param>
+/// <param name="Studios">The studios.</param>
+/// <param name="Genre">The genre.</param>
+/// <param name="ScreenWriters">The screenwriters.</param>
+/// <param name="Cast">The cast.</param>
+/// <param name="Composers">The composers.</param>
 public abstract record Episode(
     string? Name,
     string? Description,

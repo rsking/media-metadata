@@ -9,7 +9,7 @@ namespace Media.Metadata;
 /// <summary>
 /// Represents a local episode.
 /// </summary>
-/// <inheritdoc />
+/// <inheritdoc cref="Episode" />
 public record class LocalEpisode(
     FileInfo FileInfo,
     string? Name,

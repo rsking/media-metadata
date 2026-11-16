@@ -9,7 +9,7 @@ namespace Media.Metadata;
 /// <summary>
 /// Represents a local video.
 /// </summary>
-/// <inheritdoc />
+/// <inheritdoc cref="Video" />
 public record class LocalVideo(
     FileInfo FileInfo,
     string? Name,

@@ -9,7 +9,7 @@ namespace Media.Metadata;
 /// <summary>
 /// Represents a local movie.
 /// </summary>
-/// <inheritdoc />
+/// <inheritdoc cref="Movie" />
 public record class LocalMovie(
     FileInfo FileInfo,
     string? Name,

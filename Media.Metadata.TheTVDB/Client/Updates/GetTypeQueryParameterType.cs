@@ -140,9 +140,9 @@ namespace ApiSdk.Updates
         #pragma warning disable CS1591
         Translatedseasons,
         #pragma warning restore CS1591
-        [EnumMember(Value = "translatedserierk")]
+        [EnumMember(Value = "translatedseries")]
         #pragma warning disable CS1591
-        Translatedserierk,
+        Translatedseries,
         #pragma warning restore CS1591
     }
 }

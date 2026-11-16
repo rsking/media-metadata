@@ -51,7 +51,10 @@ internal sealed class ChapterList : IList<Chapter>
     /// <exception cref="ArgumentException">value to be set is already in the list.</exception>
     public Chapter this[int index]
     {
-        get => this.chapters[index];
+        get
+        {
+            return this.chapters[index];
+        }
 
         set
         {

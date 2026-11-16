@@ -55,10 +55,10 @@ public static class AppDomainExtensions
             var architecture = RuntimeInformation.OSArchitecture switch
             {
                 Architecture.Arm => Arm,
-                Architecture.Arm64 when IntPtr.Size is 4 => Arm,
+                Architecture.Arm64 when nint.Size is 4 => Arm,
                 Architecture.Arm64 => Arm64,
                 Architecture.X86 => X86,
-                Architecture.X64 when IntPtr.Size is 4 => X86,
+                Architecture.X64 when nint.Size is 4 => X86,
                 Architecture.X64 => X64,
                 _ => throw new InvalidOperationException(),
             };
@@ -69,17 +69,17 @@ public static class AppDomainExtensions
             [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0046:Convert to conditional expression", Justification = "This would make it harder to read")]
             static string GetRidFront()
             {
-                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                if (OperatingSystem.IsWindows())
                 {
                     return "win";
                 }
 
-                if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+                if (OperatingSystem.IsLinux())
                 {
                     return "linux";
                 }
 
-                if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+                if (OperatingSystem.IsMacOS())
                 {
                     return "osx";
                 }

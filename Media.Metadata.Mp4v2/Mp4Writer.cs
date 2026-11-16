@@ -152,7 +152,7 @@ public class Mp4Writer : IUpdater
                     track.Language = language.Value;
                 }
 
-                IEnumerable<Track> GetTracks(IEnumerable<Track> tracks, MediaTrackType key)
+                static IEnumerable<Track> GetTracks(IEnumerable<Track> tracks, MediaTrackType key)
                 {
                     return key switch
                     {

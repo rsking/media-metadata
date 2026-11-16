@@ -84,15 +84,20 @@ namespace ApiSdk.Updates
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         internal partial class UpdatesRequestBuilderGetQueryParameters 
         {
+            #pragma warning disable CS1591
             [QueryParameter("action")]
             public global::ApiSdk.Updates.GetActionQueryParameterType? Action { get; set; }
-            /// <summary>name</summary>
+            #pragma warning restore CS1591
+            /// <summary>Page number, starting at 0</summary>
             [QueryParameter("page")]
-            public double? Page { get; set; }
+            public int? Page { get; set; }
+            /// <summary>Unix timestamp in seconds (for example 1730000000). Returns changes made at or after this time. It must be less than 90 days ago and not in the future, otherwise the API returns 400. The check uses the server clock, so leave a margin of a few minutes. If your local copy is older than 90 days, re-fetch the records you track instead of using /updates.</summary>
             [QueryParameter("since")]
-            public double? Since { get; set; }
+            public long? Since { get; set; }
+            #pragma warning disable CS1591
             [QueryParameter("type")]
             public global::ApiSdk.Updates.GetTypeQueryParameterType? Type { get; set; }
+            #pragma warning restore CS1591
         }
     }
 }

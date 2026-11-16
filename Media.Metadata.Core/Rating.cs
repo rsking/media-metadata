@@ -9,12 +9,13 @@ namespace Media.Metadata;
 /// <summary>
 /// Represents the rating.
 /// </summary>
+/// <param name="Standard">The standard.</param>
+/// <param name="ContentRating">The content rating.</param>
+/// <param name="Score">The score.</param>
+/// <param name="Annotation">The annotation.</param>
 public readonly record struct Rating(string Standard, string ContentRating, int Score = default, string? Annotation = default)
 {
     private static readonly Dictionary<Country, ILookup<RatingType, Rating>> Ratings = LoadRatings();
-
-    /// <inheritdoc/>
-    public override string ToString() => FormattableString.Invariant($"{this.Standard}|{this.ContentRating}|{this.Score}|{this.Annotation ?? string.Empty}");
 
     /// <summary>
     /// Parses a <see cref="Rating"/> from a tag.
@@ -86,6 +87,9 @@ public readonly record struct Rating(string Standard, string ContentRating, int 
         (true, var t) => value[t],
         _ => [],
     };
+
+    /// <inheritdoc/>
+    public override string ToString() => FormattableString.Invariant($"{this.Standard}|{this.ContentRating}|{this.Score}|{this.Annotation ?? string.Empty}");
 
     private static Dictionary<Country, ILookup<RatingType, Rating>> LoadRatings()
     {

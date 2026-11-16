@@ -84,8 +84,10 @@ namespace ApiSdk.Series.Item.Episodes.Item.Item
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         internal partial class WithLangItemRequestBuilderGetQueryParameters 
         {
+            #pragma warning disable CS1591
             [QueryParameter("page")]
             public int? Page { get; set; }
+            #pragma warning restore CS1591
         }
     }
 }

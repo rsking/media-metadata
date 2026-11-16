@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "Media.Metadata": {
+      "commandName": "Project"
+    },
+    "Media.Metadata - Package": {
+      "commandName": "MsixPackage",
+      "authenticationMode": "Windows"
+    }
+  }
+}

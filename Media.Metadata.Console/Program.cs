@@ -42,19 +42,19 @@ var optimiseCommand = CreateOptimize();
 
 var renameCommand = CreateRename();
 
-var configuration = new CommandLineConfiguration(new RootCommand
+var rootCommand = new RootCommand
 {
     searchCommand,
     readCommand,
     updateCommand,
     optimiseCommand,
     renameCommand,
-});
+};
 
-await configuration
+await rootCommand
     .UseHost(
         Host.CreateDefaultBuilder,
-        configure => configure.ConfigureServices((builder, services) =>
+        (__, configure) => configure.ConfigureServices((builder, services) =>
         {
             _ = services
                 .AddTMDb()
@@ -66,7 +66,8 @@ await configuration
             _ = services
                 .Configure<InvocationLifetimeOptions>(options => options.SuppressStatusMessages = true);
         }))
-    .InvokeAsync([.. args.Select(Environment.ExpandEnvironmentVariables)])
+    .Parse([.. args.Select(Environment.ExpandEnvironmentVariables)])
+    .InvokeAsync()
     .ConfigureAwait(true);
 
 static Command CreateSearchMovie()
@@ -84,7 +85,7 @@ static Command CreateSearchMovie()
         {
             var name = parseResult.GetValue(nameArgument).ThrowIfNull();
             var year = parseResult.GetValue(yearOption);
-            foreach (var search in parseResult.GetHost().Services.GetServices<IMovieSearch>())
+            foreach (var search in parseResult.GetHost().ThrowIfNull().Services.GetServices<IMovieSearch>())
             {
                 await foreach (var movie in search.SearchAsync(name, year ?? 0, cancellationToken: cancellationToken).ConfigureAwait(false))
                 {
@@ -114,7 +115,7 @@ static Command CreateReadMovie()
     command.SetAction((parseResult, _) =>
     {
         var path = parseResult.GetValue(pathArgument).ThrowIfNull().ThrowIfNotExists();
-        var movie = parseResult.GetHost().Services.GetRequiredService<IReader>().ReadMovie(path.FullName);
+        var movie = parseResult.GetHost().ThrowIfNull().Services.GetRequiredService<IReader>().ReadMovie(path.FullName);
         Console.WriteLine(movie.Name);
         return Task.CompletedTask;
     });
@@ -133,7 +134,7 @@ static Command CreateReadEpisode()
     command.SetAction((parseResult, _) =>
     {
         var path = parseResult.GetValue(pathArgument).ThrowIfNull().ThrowIfNotExists();
-        var episode = parseResult.GetHost().Services.GetRequiredService<IReader>().ReadEpisode(path.FullName);
+        var episode = parseResult.GetHost().ThrowIfNull().Services.GetRequiredService<IReader>().ReadEpisode(path.FullName);
         Console.WriteLine(episode.Name);
         return Task.CompletedTask;
     });
@@ -156,7 +157,7 @@ static Command CreateSearchShow()
         var name = parseResult.GetValue(nameArgument).ThrowIfNull();
         var year = parseResult.GetValue(yearOption);
 
-        foreach (var search in parseResult.GetHost().Services.GetServices<IShowSearch>())
+        foreach (var search in parseResult.GetHost().ThrowIfNull().Services.GetServices<IShowSearch>())
         {
             await foreach (var show in search.SearchAsync(name, year, cancellationToken: cancellationToken).ConfigureAwait(false))
             {
@@ -196,7 +197,7 @@ static Command CreateUpdateMovie(Option<string[]> langOption)
         async (parseResult, cancellationToken) =>
         {
             var path = parseResult.GetValue(pathArgument).ThrowIfNull().ThrowIfNotExists();
-            var host = parseResult.GetHost();
+            var host = parseResult.GetHost().ThrowIfNull();
             var name = parseResult.GetValue(nameArgument).ThrowIfNull();
             var year = parseResult.GetValue(yearOption);
             var lang = parseResult.GetValue(langOption);
@@ -207,10 +208,10 @@ static Command CreateUpdateMovie(Option<string[]> langOption)
                 {
                     if (string.Equals(movie.Name, name, StringComparison.OrdinalIgnoreCase) && (year is 0 || (movie.Release.HasValue && movie.Release.Value.Year == year)))
                     {
-                        await parseResult.Configuration.Output.WriteLineAsync(string.Create(System.Globalization.CultureInfo.CurrentCulture, $"Found Movie {movie.Name} ({movie.Release?.Year})")).ConfigureAwait(false);
-                        await parseResult.Configuration.Output.WriteLineAsync($"Saving {path.Name}").ConfigureAwait(false);
+                        await parseResult.InvocationConfiguration.Output.WriteLineAsync(string.Create(System.Globalization.CultureInfo.CurrentCulture, $"Found Movie {movie.Name} ({movie.Release?.Year})"), cancellationToken).ConfigureAwait(false);
+                        await parseResult.InvocationConfiguration.Output.WriteLineAsync($"Saving {path.Name}", cancellationToken).ConfigureAwait(false);
                         host.Services.GetRequiredService<IUpdater>().UpdateMovie(path.FullName, movie, GetLanguages(lang));
-                        await parseResult.Configuration.Output.WriteLineAsync($"Saved {path.Name}").ConfigureAwait(false);
+                        await parseResult.InvocationConfiguration.Output.WriteLineAsync($"Saved {path.Name}", cancellationToken).ConfigureAwait(false);
                         break;
                     }
                 }
@@ -245,8 +246,8 @@ static Command CreateUpdateEpisode(Option<string[]> langOption)
     command.SetAction((parseResult, cancellationToken) =>
     {
         return Process(
-            parseResult.Configuration,
-            parseResult.GetHost(),
+            parseResult.InvocationConfiguration,
+            parseResult.GetHost().ThrowIfNull(),
             parseResult.GetValue(pathArgument).ThrowIfNull(),
             parseResult.GetValue(nameOption).ThrowIfNull(),
             parseResult.GetValue(yearOption),
@@ -257,7 +258,7 @@ static Command CreateUpdateEpisode(Option<string[]> langOption)
             parseResult.GetValue(langOption),
             cancellationToken);
 
-        static async Task Process(CommandLineConfiguration console, IHost host, FileInfo[] paths, string name, int year, int season, int episode, bool ignore, int offset, string[]? lang, CancellationToken cancellationToken)
+        static async Task Process(InvocationConfiguration console, IHost host, FileInfo[] paths, string name, int year, int season, int episode, bool ignore, int offset, string[]? lang, CancellationToken cancellationToken)
         {
             var regex = GetEpisodeRegexes();
 
@@ -288,7 +289,7 @@ static Command CreateUpdateEpisode(Option<string[]> langOption)
                         return;
                     }
 
-                    await console.Output.WriteLineAsync($"Found Series  {series.Name}").ConfigureAwait(false);
+                    await console.Output.WriteLineAsync($"Found Series  {series.Name}", cancellationToken).ConfigureAwait(false);
                     var seasonEnumerator = series.Seasons.GetEnumerator();
                     if (!seasonEnumerator.MoveNext())
                     {
@@ -304,7 +305,7 @@ static Command CreateUpdateEpisode(Option<string[]> langOption)
 
                         if (seasonEnumerator.Current is { } s && s.Number == seasonGroup.Key)
                         {
-                            await console.Output.WriteLineAsync(string.Create(System.Globalization.CultureInfo.CurrentCulture, $"Found Season  {series.Name}:{s.Number}")).ConfigureAwait(false);
+                            await console.Output.WriteLineAsync(string.Create(System.Globalization.CultureInfo.CurrentCulture, $"Found Season  {series.Name}:{s.Number}"), cancellationToken).ConfigureAwait(false);
 
                             var episodes = seasonGroup
                                 .Select(path => episode switch
@@ -324,7 +325,7 @@ static Command CreateUpdateEpisode(Option<string[]> langOption)
 
                             foreach (var ep in episodes.Where(ep => ep.Path.Exists))
                             {
-                                await console.Output.WriteLineAsync(string.Create(System.Globalization.CultureInfo.CurrentCulture, $"Processing {ep.Path.Name}")).ConfigureAwait(false);
+                                await console.Output.WriteLineAsync(string.Create(System.Globalization.CultureInfo.CurrentCulture, $"Processing {ep.Path.Name}"), cancellationToken).ConfigureAwait(false);
 
                                 while (episodeEnumerator is { Current: { } current } && current.Number < ep.Episode && episodeEnumerator.MoveNext())
                                 {
@@ -333,10 +334,10 @@ static Command CreateUpdateEpisode(Option<string[]> langOption)
 
                                 if (episodeEnumerator.Current is { } e && e.Number == ep.Episode)
                                 {
-                                    await console.Output.WriteLineAsync(string.Create(System.Globalization.CultureInfo.CurrentCulture, $"Found Episode {series.Name}:{s.Number}:{e.Name}")).ConfigureAwait(false);
+                                    await console.Output.WriteLineAsync(string.Create(System.Globalization.CultureInfo.CurrentCulture, $"Found Episode {series.Name}:{s.Number}:{e.Name}"), cancellationToken).ConfigureAwait(false);
                                     if (e.Rating is null)
                                     {
-                                        await console.Error.WriteLineAsync(string.Create(System.Globalization.CultureInfo.CurrentCulture, $"Failed to get rating for {e.Name}")).ConfigureAwait(false);
+                                        await console.Error.WriteLineAsync(string.Create(System.Globalization.CultureInfo.CurrentCulture, $"Failed to get rating for {e.Name}"), cancellationToken).ConfigureAwait(false);
                                     }
 
                                     var (image, imageFormat) = (s, series, e) switch
@@ -397,9 +398,9 @@ static Command CreateUpdateVideo(Option<string[]> langOption)
     };
 
     command.SetAction(
-        async (parseResult, _) =>
+        async (parseResult, cancellationToken) =>
         {
-            var host = parseResult.GetHost();
+            var host = parseResult.GetHost().ThrowIfNull();
             var path = parseResult.GetValue(pathArgument).ThrowIfNull();
             var lang = parseResult.GetValue(langOption);
             var reader = host.Services.GetRequiredService<IReader>();
@@ -408,7 +409,7 @@ static Command CreateUpdateVideo(Option<string[]> langOption)
             foreach (var p in path.Where(p => p.Exists).Select(p => p.FullName))
             {
                 var video = reader.ReadVideo(p);
-                await parseResult.Configuration.Output.WriteLineAsync(string.Create(System.Globalization.CultureInfo.CurrentCulture, $"Updating {video.Name}")).ConfigureAwait(true);
+                await parseResult.InvocationConfiguration.Output.WriteLineAsync(string.Create(System.Globalization.CultureInfo.CurrentCulture, $"Updating {video.Name}"), cancellationToken).ConfigureAwait(true);
                 updater.UpdateVideo(p, video, languages);
             }
         });
@@ -426,7 +427,7 @@ static Command CreateOptimize()
             () =>
             {
                 var path = parseResult.GetValue(pathArgument).ThrowIfNull().ThrowIfNotExists();
-                _ = parseResult.GetHost().Services.GetRequiredService<IOptimizer>().Optimize(path.FullName);
+                _ = parseResult.GetHost().ThrowIfNull().Services.GetRequiredService<IOptimizer>().Optimize(path.FullName);
             },
             cancellationToken));
 
@@ -456,7 +457,7 @@ static Command CreateRename()
 
     command.SetAction(async (parseResult, cancellationToken) =>
     {
-        var host = parseResult.GetHost();
+        var host = parseResult.GetHost().ThrowIfNull();
         var reader = host.Services.GetRequiredService<IReader>();
         var renamer = host.Services.GetRequiredService<IRenamer>();
         var source = parseResult.GetValue(sourceArgument) ?? throw new InvalidOperationException();
@@ -494,7 +495,7 @@ static Command CreateRename()
             }
             catch (Exception ex)
             {
-                await parseResult.Configuration.Output.WriteLineAsync($"Unsupported file - {file.Name} - {ex.Message}").ConfigureAwait(true);
+                await parseResult.InvocationConfiguration.Output.WriteLineAsync($"Unsupported file - {file.Name} - {ex.Message}", cancellationToken).ConfigureAwait(true);
                 continue;
             }
 
@@ -510,7 +511,7 @@ static Command CreateRename()
                 var path = new FileInfo(Path.Combine(basePath, name));
                 if (path.Exists && path.Length == file.Length)
                 {
-                    await parseResult.Configuration.Output.WriteLineAsync($"{file.FullName} has the same length as {path.FullName}").ConfigureAwait(true);
+                    await parseResult.InvocationConfiguration.Output.WriteLineAsync($"{file.FullName} has the same length as {path.FullName}", cancellationToken).ConfigureAwait(true);
                     continue;
                 }
 
@@ -523,7 +524,7 @@ static Command CreateRename()
                 {
                     if (!path.Exists)
                     {
-                        await parseResult.Configuration.Output.WriteLineAsync($"Moving {file.FullName} to {path.FullName}").ConfigureAwait(true);
+                        await parseResult.InvocationConfiguration.Output.WriteLineAsync($"Moving {file.FullName} to {path.FullName}", cancellationToken).ConfigureAwait(true);
                         if (!dryRun)
                         {
                             file.MoveTo(path.FullName);
@@ -531,7 +532,7 @@ static Command CreateRename()
                     }
                     else
                     {
-                        await parseResult.Configuration.Output.WriteLineAsync($"Replacing {path.FullName} with {file.FullName} with a move").ConfigureAwait(true);
+                        await parseResult.InvocationConfiguration.Output.WriteLineAsync($"Replacing {path.FullName} with {file.FullName} with a move", cancellationToken).ConfigureAwait(true);
                         if (!dryRun)
                         {
                             _ = file.CopyTo(path.FullName, overwrite: true);
@@ -546,11 +547,11 @@ static Command CreateRename()
                 {
                     if (path.Exists)
                     {
-                        await parseResult.Configuration.Output.WriteLineAsync($"Replacing {path.FullName} with {file.FullName} by a copy").ConfigureAwait(true);
+                        await parseResult.InvocationConfiguration.Output.WriteLineAsync($"Replacing {path.FullName} with {file.FullName} by a copy", cancellationToken).ConfigureAwait(true);
                     }
                     else
                     {
-                        await parseResult.Configuration.Output.WriteLineAsync($"Coping {file.FullName} to {path.FullName}").ConfigureAwait(true);
+                        await parseResult.InvocationConfiguration.Output.WriteLineAsync($"Coping {file.FullName} to {path.FullName}", cancellationToken).ConfigureAwait(true);
                     }
 
                     if (!dryRun)
@@ -653,39 +654,39 @@ internal sealed partial class Program
     {
     }
 
+    [System.Text.RegularExpressions.GeneratedRegex(@"[Ss](?<season>\d{2})[Ee](?<episode>\d{2})", System.Text.RegularExpressions.RegexOptions.None, MillisecondTimeout)]
+    private static partial System.Text.RegularExpressions.Regex SbsRegex1 { get; }
+
+    [System.Text.RegularExpressions.GeneratedRegex(@"S(?<season>\d+) Ep(?<episode>\d+)", System.Text.RegularExpressions.RegexOptions.None, MillisecondTimeout)]
+    private static partial System.Text.RegularExpressions.Regex SbsRegex2 { get; }
+
+    [System.Text.RegularExpressions.GeneratedRegex(@"S(?<season>\d+) Ep. (?<episode>\d+)", System.Text.RegularExpressions.RegexOptions.None, MillisecondTimeout)]
+    private static partial System.Text.RegularExpressions.Regex SbsRegex3 { get; }
+
+    [System.Text.RegularExpressions.GeneratedRegex(@"Series (?<season>\d+) Ep (?<episode>\d+)", System.Text.RegularExpressions.RegexOptions.None, MillisecondTimeout)]
+    private static partial System.Text.RegularExpressions.Regex IViewRegex1 { get; }
+
+    [System.Text.RegularExpressions.GeneratedRegex(@"..(\d+).(?<episode>\d{3})S(\d{2})", System.Text.RegularExpressions.RegexOptions.ExplicitCapture | System.Text.RegularExpressions.RegexOptions.None, MillisecondTimeout)]
+    private static partial System.Text.RegularExpressions.Regex IViewRegex2 { get; }
+
+    [System.Text.RegularExpressions.GeneratedRegex(@"Episode (?<episode>\d+) ", System.Text.RegularExpressions.RegexOptions.ExplicitCapture | System.Text.RegularExpressions.RegexOptions.None, MillisecondTimeout)]
+    private static partial System.Text.RegularExpressions.Regex Episode1 { get; }
+
+    [System.Text.RegularExpressions.GeneratedRegex(@"Season (?<season>\d{2})", System.Text.RegularExpressions.RegexOptions.ExplicitCapture | System.Text.RegularExpressions.RegexOptions.None, MillisecondTimeout)]
+    private static partial System.Text.RegularExpressions.Regex Season1 { get; }
+
     /// <summary>
     /// Gets the episode <see cref="System.Text.RegularExpressions.Regex"/> expressions.
     /// </summary>
     /// <returns>The episode <see cref="System.Text.RegularExpressions.Regex"/> expressions.</returns>
     internal static IEnumerable<System.Text.RegularExpressions.Regex> GetEpisodeRegexes() =>
         [
-            SbsRegex1(),
-            SbsRegex2(),
-            SbsRegex3(),
-            IViewRegex1(),
-            IViewRegex2(),
-            Episode1(),
-            Season1(),
+            SbsRegex1,
+            SbsRegex2,
+            SbsRegex3,
+            IViewRegex1,
+            IViewRegex2,
+            Episode1,
+            Season1,
         ];
-
-    [System.Text.RegularExpressions.GeneratedRegex(@"[Ss](?<season>\d{2})[Ee](?<episode>\d{2})", System.Text.RegularExpressions.RegexOptions.None, MillisecondTimeout)]
-    private static partial System.Text.RegularExpressions.Regex SbsRegex1();
-
-    [System.Text.RegularExpressions.GeneratedRegex(@"S(?<season>\d+) Ep(?<episode>\d+)", System.Text.RegularExpressions.RegexOptions.None, MillisecondTimeout)]
-    private static partial System.Text.RegularExpressions.Regex SbsRegex2();
-
-    [System.Text.RegularExpressions.GeneratedRegex(@"S(?<season>\d+) Ep. (?<episode>\d+)", System.Text.RegularExpressions.RegexOptions.None, MillisecondTimeout)]
-    private static partial System.Text.RegularExpressions.Regex SbsRegex3();
-
-    [System.Text.RegularExpressions.GeneratedRegex(@"Series (?<season>\d+) Ep (?<episode>\d+)", System.Text.RegularExpressions.RegexOptions.None, MillisecondTimeout)]
-    private static partial System.Text.RegularExpressions.Regex IViewRegex1();
-
-    [System.Text.RegularExpressions.GeneratedRegex(@"..(\d+).(?<episode>\d{3})S(\d{2})", System.Text.RegularExpressions.RegexOptions.ExplicitCapture | System.Text.RegularExpressions.RegexOptions.None, MillisecondTimeout)]
-    private static partial System.Text.RegularExpressions.Regex IViewRegex2();
-
-    [System.Text.RegularExpressions.GeneratedRegex(@"Episode (?<episode>\d+) ", System.Text.RegularExpressions.RegexOptions.ExplicitCapture | System.Text.RegularExpressions.RegexOptions.None, MillisecondTimeout)]
-    private static partial System.Text.RegularExpressions.Regex Episode1();
-
-    [System.Text.RegularExpressions.GeneratedRegex(@"Season (?<season>\d{2})", System.Text.RegularExpressions.RegexOptions.ExplicitCapture | System.Text.RegularExpressions.RegexOptions.None, MillisecondTimeout)]
-    private static partial System.Text.RegularExpressions.Regex Season1();
 }

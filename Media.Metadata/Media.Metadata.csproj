@@ -9,11 +9,12 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <Platforms>x86;x64;arm64</Platforms>
     <RuntimeIdentifiers>win-x86;win-x64;win-arm64</RuntimeIdentifiers>
-    <PublishProfile>win10-$(Platform).pubxml</PublishProfile>
     <UseWinUI>true</UseWinUI>
     <EnablePreviewMsixTooling>true</EnablePreviewMsixTooling>
     <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+
+    <CentralPackageTransitivePinningEnabled>true</CentralPackageTransitivePinningEnabled>
 
     <AssemblyName>mm</AssemblyName>
     <UserSecretsId>f4141296-1840-4f5a-9776-40b8aa343667</UserSecretsId>
@@ -28,21 +29,10 @@
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.Mvvm" />
     <PackageReference Include="CommunityToolkit.WinUI.Controls.TokenizingTextBox" />
-    <PackageReference Include="Formatters.PList" />
-    <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" />
     <PackageReference Include="Microsoft.Extensions.Hosting" />
-    <PackageReference Include="Microsoft.WindowsAppSDK" />
-    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" />
     <PackageReference Include="Microsoft.Xaml.Behaviors.WinUI.Managed" />
-    <PackageReference Include="RestSharp" />
-    <PackageReference Include="SixLabors.ImageSharp" />
-    <PackageReference Include="System.Linq.Async" />
-    <!--<PackageReference Include="System.Text.Encoding.CodePages" />-->
-    <PackageReference Include="TagLibSharp" />
     <PackageReference Include="Vanara.PInvoke.Shell32" />
-    <PackageReference Include="Vanara.PInvoke.User32" />
-    <PackageReference Include="TMDbLib" />
+
     <Manifest Include="$(ApplicationManifest)" />
   </ItemGroup>
 
